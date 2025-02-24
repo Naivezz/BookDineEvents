@@ -1,4 +1,4 @@
-package org.example.entity.enums;
+package com.naivez.entity.enums;
 
 public enum OrderStatus {
     PENDING,
