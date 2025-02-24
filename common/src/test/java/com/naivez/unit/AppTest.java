@@ -1,4 +1,4 @@
-package com.example.unit;
+package com.naivez.unit;
 
 import org.junit.jupiter.api.Test;
 

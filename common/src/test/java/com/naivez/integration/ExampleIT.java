@@ -1,4 +1,4 @@
-package com.example.integration;
+package com.naivez.integration;
 
 import org.junit.jupiter.api.Test;
 
