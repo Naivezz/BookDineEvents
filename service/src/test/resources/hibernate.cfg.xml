@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:h2:mem:naivez</property>
+    <property name="connection.username"/>
+    <property name="connection.password"/>
+    <property name="connection.driver_class">org.h2.Driver</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
+    <property name="show_sql">true</property>
+    <property name="format_sql">true</property>
+    <property name="hibernate.hbm2ddl.auto">create</property>
+
+    <mapping class="com.naivez.entity.BlackList"/>
+    <mapping class="com.naivez.entity.Event"/>
+    <mapping class="com.naivez.entity.MenuItem"/>
+    <mapping class="com.naivez.entity.Order"/>
+    <mapping class="com.naivez.entity.OrderMenuItem"/>
+    <mapping class="com.naivez.entity.Payment"/>
+    <mapping class="com.naivez.entity.Reservation"/>
+    <mapping class="com.naivez.entity.Restaurant"/>
+    <mapping class="com.naivez.entity.Review"/>
+    <mapping class="com.naivez.entity.Spot"/>
+    <mapping class="com.naivez.entity.User"/>
+
+  </session-factory>
+</hibernate-configuration>
