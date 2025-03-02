@@ -39,7 +39,6 @@ class ReservationIT extends IntegrationTestBase {
         session.flush();
 
         var reservation = Reservation.builder()
-                .time(LocalDateTime.now().plusDays(1))
                 .guests(4)
                 .status(ReservationStatus.CONFIRMED)
                 .user(user)
@@ -75,7 +74,6 @@ class ReservationIT extends IntegrationTestBase {
         Session session = getSession();
 
         var reservation = Reservation.builder()
-                .time(LocalDateTime.now().plusDays(5))
                 .guests(3)
                 .status(ReservationStatus.PENDING)
                 .build();
@@ -97,7 +95,6 @@ class ReservationIT extends IntegrationTestBase {
         Session session = getSession();
 
         var reservation = Reservation.builder()
-                .time(LocalDateTime.now().plusDays(2))
                 .guests(5)
                 .status(ReservationStatus.CONFIRMED)
                 .build();

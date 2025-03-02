@@ -41,7 +41,6 @@ class ReviewIT extends IntegrationTestBase {
         var review = Review.builder()
                 .rating(4)
                 .description("Great")
-                .date(LocalDateTime.now())
                 .user(user)
                 .restaurant(restaurant)
                 .build();
@@ -86,7 +85,6 @@ class ReviewIT extends IntegrationTestBase {
         var review = Review.builder()
                 .rating(5)
                 .description("Great")
-                .date(LocalDateTime.now())
                 .user(user)
                 .restaurant(restaurant)
                 .build();
@@ -126,7 +124,6 @@ class ReviewIT extends IntegrationTestBase {
         var review = Review.builder()
                 .rating(3)
                 .description("Great")
-                .date(LocalDateTime.now())
                 .user(user)
                 .restaurant(restaurant)
                 .build();
@@ -172,7 +169,6 @@ class ReviewIT extends IntegrationTestBase {
         var review = Review.builder()
                 .rating(5)
                 .description("Great")
-                .date(LocalDateTime.now())
                 .user(user)
                 .restaurant(restaurant)
                 .build();

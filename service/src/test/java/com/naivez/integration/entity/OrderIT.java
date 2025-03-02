@@ -38,7 +38,6 @@ class OrderIT extends IntegrationTestBase {
                 .build();
 
         var reservation = Reservation.builder()
-                .time(LocalDateTime.now().plusDays(5))
                 .guests(3)
                 .status(ReservationStatus.PENDING)
                 .build();
@@ -87,7 +86,6 @@ class OrderIT extends IntegrationTestBase {
                 .build();
 
         var reservation = Reservation.builder()
-                .time(LocalDateTime.now().plusDays(5))
                 .guests(3)
                 .status(ReservationStatus.PENDING)
                 .build();
@@ -131,7 +129,6 @@ class OrderIT extends IntegrationTestBase {
                 .build();
 
         var reservation = Reservation.builder()
-                .time(LocalDateTime.now().plusDays(5))
                 .guests(3)
                 .status(ReservationStatus.PENDING)
                 .build();
@@ -181,7 +178,6 @@ class OrderIT extends IntegrationTestBase {
                 .build();
 
         var reservation = Reservation.builder()
-                .time(LocalDateTime.now().plusDays(5))
                 .guests(3)
                 .status(ReservationStatus.PENDING)
                 .build();

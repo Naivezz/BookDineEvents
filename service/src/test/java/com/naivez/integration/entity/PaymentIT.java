@@ -21,7 +21,6 @@ class PaymentIT extends IntegrationTestBase {
         Session session = getSession();
 
         var reservation = Reservation.builder()
-                .time(LocalDateTime.now().plusDays(1))
                 .guests(4)
                 .status(ReservationStatus.CONFIRMED)
                 .build();
@@ -49,7 +48,6 @@ class PaymentIT extends IntegrationTestBase {
         Session session = getSession();
 
         var reservation = Reservation.builder()
-                .time(LocalDateTime.now().plusDays(2))
                 .guests(3)
                 .status(ReservationStatus.PENDING)
                 .build();
@@ -73,7 +71,6 @@ class PaymentIT extends IntegrationTestBase {
         Session session = getSession();
 
         var reservation = Reservation.builder()
-                .time(LocalDateTime.now().plusHours(4))
                 .guests(2)
                 .status(ReservationStatus.CONFIRMED)
                 .build();
@@ -103,7 +100,6 @@ class PaymentIT extends IntegrationTestBase {
         Session session = getSession();
 
         var reservation = Reservation.builder()
-                .time(LocalDateTime.now().plusDays(3))
                 .guests(5)
                 .status(ReservationStatus.CONFIRMED)
                 .build();

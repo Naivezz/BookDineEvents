@@ -29,7 +29,6 @@ class EventIT extends IntegrationTestBase {
         var event = Event.builder()
                 .name("Some event")
                 .description("Some description")
-                .date(LocalDateTime.now().plusDays(7))
                 .restaurant(restaurant)
                 .build();
 
@@ -90,7 +89,6 @@ class EventIT extends IntegrationTestBase {
         var event = Event.builder()
                 .name("Some event")
                 .description("Some description")
-                .date(LocalDateTime.now().plusDays(7))
                 .restaurant(restaurant)
                 .build();
 
@@ -126,7 +124,6 @@ class EventIT extends IntegrationTestBase {
         var event = Event.builder()
                 .name("Some event")
                 .description("Some description")
-                .date(LocalDateTime.now().plusDays(7))
                 .restaurant(restaurant)
                 .build();
 
