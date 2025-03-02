@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Data
@@ -33,7 +34,7 @@ public class Payment {
     private BigDecimal amount;
 
     @CreationTimestamp
-    private LocalDateTime date;
+    private Instant time;
 
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;

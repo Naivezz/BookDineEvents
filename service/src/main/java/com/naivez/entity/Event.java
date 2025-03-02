@@ -12,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Data
@@ -29,7 +30,7 @@ public class Event {
 
     private String description;
 
-    private LocalDateTime date;
+    private Instant time;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id")

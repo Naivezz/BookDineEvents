@@ -13,6 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Data
@@ -29,7 +30,7 @@ public class BlackList {
     private String reason;
 
     @CreationTimestamp
-    private LocalDateTime date;
+    private Instant time;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
