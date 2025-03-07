@@ -20,6 +20,11 @@ public abstract class IntegrationTestBase {
         sessionFactory = configuration.buildSessionFactory();
     }
 
+    @AfterAll
+    static void close() {
+        sessionFactory.close();
+    }
+
     @BeforeEach
     void sessionInit() {
         session = sessionFactory.openSession();
@@ -30,11 +35,6 @@ public abstract class IntegrationTestBase {
     void rollbackAndClose() {
         session.getTransaction().rollback();
         session.close();
-    }
-
-    @AfterAll
-    static void close() {
-        sessionFactory.close();
     }
 
     protected Session getSession() {
