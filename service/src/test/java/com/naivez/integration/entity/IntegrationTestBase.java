@@ -1,5 +1,6 @@
 package com.naivez.integration.entity;
 
+import jakarta.persistence.EntityManager;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -8,16 +9,20 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.lang.reflect.Proxy;
+
 public abstract class IntegrationTestBase {
 
     private static SessionFactory sessionFactory;
-    private Session session;
+    protected static Session session;
 
     @BeforeAll
     static void init() {
         var configuration = new Configuration();
         configuration.configure();
         sessionFactory = configuration.buildSessionFactory();
+        session = (Session) Proxy.newProxyInstance(SessionFactory.class.getClassLoader(), new Class[]{Session.class},
+                (proxy, method, args) -> method.invoke(sessionFactory.getCurrentSession(), args));
     }
 
     @AfterAll
@@ -26,18 +31,13 @@ public abstract class IntegrationTestBase {
     }
 
     @BeforeEach
-    void sessionInit() {
-        session = sessionFactory.openSession();
+    void getSession() {
         session.beginTransaction();
     }
 
     @AfterEach
     void rollbackAndClose() {
         session.getTransaction().rollback();
-        session.close();
     }
 
-    protected Session getSession() {
-        return session;
-    }
 }

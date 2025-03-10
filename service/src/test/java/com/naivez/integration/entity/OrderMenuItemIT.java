@@ -21,8 +21,6 @@ class OrderMenuItemIT extends IntegrationTestBase {
 
     @Test
     void addOrderMenuItem() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -79,8 +77,6 @@ class OrderMenuItemIT extends IntegrationTestBase {
 
     @Test
     void getOrderMenuItem() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -133,8 +129,6 @@ class OrderMenuItemIT extends IntegrationTestBase {
 
     @Test
     void updateOrderMenuItem() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -191,8 +185,6 @@ class OrderMenuItemIT extends IntegrationTestBase {
 
     @Test
     void deleteOrderMenuItem() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")

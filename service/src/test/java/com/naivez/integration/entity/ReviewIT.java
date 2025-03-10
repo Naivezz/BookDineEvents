@@ -17,8 +17,6 @@ class ReviewIT extends IntegrationTestBase {
 
     @Test
     void addReview() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -61,8 +59,6 @@ class ReviewIT extends IntegrationTestBase {
 
     @Test
     void getReview() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -100,8 +96,6 @@ class ReviewIT extends IntegrationTestBase {
 
     @Test
     void updateReview() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -145,8 +139,6 @@ class ReviewIT extends IntegrationTestBase {
 
     @Test
     void deleteReview() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")

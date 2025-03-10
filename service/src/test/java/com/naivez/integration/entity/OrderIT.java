@@ -20,8 +20,6 @@ class OrderIT extends IntegrationTestBase {
 
     @Test
     void addOrder() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -68,8 +66,6 @@ class OrderIT extends IntegrationTestBase {
 
     @Test
     void getOrder() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -111,8 +107,6 @@ class OrderIT extends IntegrationTestBase {
 
     @Test
     void updateOrder() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -160,8 +154,6 @@ class OrderIT extends IntegrationTestBase {
 
     @Test
     void deleteOrder() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")

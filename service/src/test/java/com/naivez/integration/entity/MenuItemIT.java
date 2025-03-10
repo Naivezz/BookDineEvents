@@ -15,8 +15,6 @@ class MenuItemIT extends IntegrationTestBase {
 
     @Test
     void addMenuItem() {
-        Session session = getSession();
-
         var restaurant = Restaurant.builder()
                 .name("Test name")
                 .address("Test address")
@@ -44,8 +42,6 @@ class MenuItemIT extends IntegrationTestBase {
 
     @Test
     void getMenuItem() {
-        Session session = getSession();
-
         var restaurant = Restaurant.builder()
                 .name("Test name")
                 .address("Test address")
@@ -69,8 +65,6 @@ class MenuItemIT extends IntegrationTestBase {
 
     @Test
     void updateMenuItem() {
-        Session session = getSession();
-
         var restaurant = Restaurant.builder()
                 .name("Test name")
                 .address("Test address")
@@ -102,8 +96,6 @@ class MenuItemIT extends IntegrationTestBase {
 
     @Test
     void deleteMenuItem() {
-        Session session = getSession();
-
         var restaurant = Restaurant.builder()
                 .name("Test name")
                 .address("Test address")

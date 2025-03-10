@@ -13,8 +13,6 @@ class SpotIT extends IntegrationTestBase {
 
     @Test
     void addSpot() {
-        Session session = getSession();
-
         var restaurant = Restaurant.builder()
                 .name("Test name")
                 .address("Test address")
@@ -39,8 +37,6 @@ class SpotIT extends IntegrationTestBase {
 
     @Test
     void getSpot() {
-        Session session = getSession();
-
         var restaurant = Restaurant.builder()
                 .name("Test name")
                 .address("Test address")
@@ -63,8 +59,6 @@ class SpotIT extends IntegrationTestBase {
 
     @Test
     void updateSpot() {
-        Session session = getSession();
-
         var restaurant = Restaurant.builder()
                 .name("Test name")
                 .address("Test address")
@@ -92,8 +86,6 @@ class SpotIT extends IntegrationTestBase {
 
     @Test
     void deleteSpot() {
-        Session session = getSession();
-
         var restaurant = Restaurant.builder()
                 .name("Test name")
                 .address("Test address")

@@ -14,8 +14,6 @@ class UserIT extends IntegrationTestBase {
 
     @Test
     void addUser() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -36,8 +34,6 @@ class UserIT extends IntegrationTestBase {
 
     @Test
     void getUser() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -55,8 +51,6 @@ class UserIT extends IntegrationTestBase {
 
     @Test
     void updateUser() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -82,8 +76,6 @@ class UserIT extends IntegrationTestBase {
 
     @Test
     void deleteUser() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")

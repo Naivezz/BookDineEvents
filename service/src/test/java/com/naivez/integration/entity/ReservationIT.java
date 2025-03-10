@@ -18,8 +18,6 @@ class ReservationIT extends IntegrationTestBase {
 
     @Test
     void addReservation() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -56,8 +54,6 @@ class ReservationIT extends IntegrationTestBase {
 
     @Test
     void getReservation() {
-        Session session = getSession();
-
         var reservation = Reservation.builder()
                 .guests(2)
                 .status(ReservationStatus.PENDING)
@@ -71,8 +67,6 @@ class ReservationIT extends IntegrationTestBase {
 
     @Test
     void updateReservation() {
-        Session session = getSession();
-
         var reservation = Reservation.builder()
                 .guests(3)
                 .status(ReservationStatus.PENDING)
@@ -92,8 +86,6 @@ class ReservationIT extends IntegrationTestBase {
 
     @Test
     void deleteReservation() {
-        Session session = getSession();
-
         var reservation = Reservation.builder()
                 .guests(5)
                 .status(ReservationStatus.CONFIRMED)
