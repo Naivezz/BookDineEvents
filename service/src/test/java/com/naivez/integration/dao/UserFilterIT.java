@@ -15,7 +15,6 @@ public class UserFilterIT extends IntegrationTestBase {
 
     @Test
     void shouldReturnAllUsersByFirstName() {
-        Session session = getSession();
         var expectedUser1 = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -47,7 +46,6 @@ public class UserFilterIT extends IntegrationTestBase {
 
     @Test
     void shouldReturnUsersByFirstNameAndLastName() {
-        Session session = getSession();
         var expectedUser1 = User.builder()
                 .firstName("test firstname")
                 .lastName("test lastname")
@@ -79,7 +77,6 @@ public class UserFilterIT extends IntegrationTestBase {
 
     @Test
     void shouldReturnUsersByAnyField() {
-        Session session = getSession();
         var expectedUser1 = User.builder()
                 .firstName("test firstname")
                 .lastName("test lastname")
@@ -109,7 +106,6 @@ public class UserFilterIT extends IntegrationTestBase {
 
     @Test
     void shouldReturnUsersByFirstNameAndEmail() {
-        Session session = getSession();
         var expectedUser1 = User.builder()
                 .firstName("test firstname")
                 .lastName("test lastname")
