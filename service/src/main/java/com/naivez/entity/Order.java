@@ -30,7 +30,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(exclude = "reservation")
 @Builder
 @Table(name = "orders")
-public class Order {
+public class Order implements BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
