@@ -15,8 +15,6 @@ class BlackListIT extends IntegrationTestBase {
 
     @Test
     void addBlackList() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -59,8 +57,6 @@ class BlackListIT extends IntegrationTestBase {
 
     @Test
     void getBlackList() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -99,8 +95,6 @@ class BlackListIT extends IntegrationTestBase {
 
     @Test
     void updateBlackList() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
@@ -144,8 +138,6 @@ class BlackListIT extends IntegrationTestBase {
 
     @Test
     void deleteBlackList() {
-        Session session = getSession();
-
         var user = User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")

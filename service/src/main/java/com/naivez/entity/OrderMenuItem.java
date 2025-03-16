@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Builder
 @Table(name = "order_menu_item")
-public class OrderMenuItem {
+public class OrderMenuItem implements BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -15,8 +15,6 @@ class EventIT extends IntegrationTestBase {
 
     @Test
     void addEvent() {
-        Session session = getSession();
-
         var restaurant = Restaurant.builder()
                 .name("Test name")
                 .address("Test address")
@@ -47,8 +45,6 @@ class EventIT extends IntegrationTestBase {
 
     @Test
     void getEvent() {
-        Session session = getSession();
-
         var restaurant = Restaurant.builder()
                 .name("Test name")
                 .address("Test address")
@@ -75,8 +71,6 @@ class EventIT extends IntegrationTestBase {
 
     @Test
     void updateEvent() {
-        Session session = getSession();
-
         var restaurant = Restaurant.builder()
                 .name("Test name")
                 .address("Test address")
@@ -110,8 +104,6 @@ class EventIT extends IntegrationTestBase {
 
     @Test
     void deleteEvent() {
-        Session session = getSession();
-
         var restaurant = Restaurant.builder()
                 .name("Test name")
                 .address("Test address")

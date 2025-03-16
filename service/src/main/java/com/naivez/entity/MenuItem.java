@@ -21,7 +21,7 @@ import java.math.BigDecimal;
 @Entity
 @Builder
 @Table(name = "menu_item")
-public class MenuItem {
+public class MenuItem implements BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -23,7 +23,7 @@ import java.util.List;
 @EqualsAndHashCode(exclude = {"spots","reviews","events","blacklists"})
 @Entity
 @Builder
-public class Restaurant {
+public class Restaurant implements BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -18,8 +18,6 @@ class PaymentIT extends IntegrationTestBase {
 
     @Test
     void addPayment() {
-        Session session = getSession();
-
         var reservation = Reservation.builder()
                 .guests(4)
                 .status(ReservationStatus.CONFIRMED)
@@ -45,8 +43,6 @@ class PaymentIT extends IntegrationTestBase {
 
     @Test
     void getPayment() {
-        Session session = getSession();
-
         var reservation = Reservation.builder()
                 .guests(3)
                 .status(ReservationStatus.PENDING)
@@ -68,8 +64,6 @@ class PaymentIT extends IntegrationTestBase {
 
     @Test
     void updatePayment() {
-        Session session = getSession();
-
         var reservation = Reservation.builder()
                 .guests(2)
                 .status(ReservationStatus.CONFIRMED)
@@ -97,8 +91,6 @@ class PaymentIT extends IntegrationTestBase {
 
     @Test
     void deletePayment() {
-        Session session = getSession();
-
         var reservation = Reservation.builder()
                 .guests(5)
                 .status(ReservationStatus.CONFIRMED)
