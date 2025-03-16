@@ -20,23 +20,19 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 
 @NamedEntityGraph(
-        name = "withReservationAndBlackList",
+        name = "withReservations",
         attributeNodes = {
-                @NamedAttributeNode(value = "reservations"),
-                @NamedAttributeNode(value = "blacklists")
+                @NamedAttributeNode(value = "reservations")
         }
 )
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"reservations","blacklists"})
-@EqualsAndHashCode(exclude = {"reservations","blacklists"})
+@ToString(exclude = "reservations")
+@EqualsAndHashCode(exclude = "reservations")
 @Entity
 @Builder
 @Table(name = "users")
@@ -59,11 +55,11 @@ public class User implements BaseEntity<Long> {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Builder.Default
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Reservation> reservations = new HashSet<>();
+    private boolean isBlacklisted;
+
+    private String blacklistReason;
 
     @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<BlackList> blacklists = new HashSet<>();
+    private List<Reservation> reservations = new ArrayList<>();
 }
