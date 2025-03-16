@@ -15,4 +15,6 @@ public class UserDto {
     String password;
 
     String phoneNumber;
+
+    boolean isBlacklisted;
 }
