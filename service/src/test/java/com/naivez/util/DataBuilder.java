@@ -1,24 +1,22 @@
 package com.naivez.util;
 
-import com.naivez.entity.BlackList;
 import com.naivez.entity.Event;
 import com.naivez.entity.MenuItem;
-import com.naivez.entity.Order;
-import com.naivez.entity.OrderMenuItem;
-import com.naivez.entity.Payment;
 import com.naivez.entity.Reservation;
+import com.naivez.entity.ReservationMenuItem;
 import com.naivez.entity.Restaurant;
 import com.naivez.entity.Review;
-import com.naivez.entity.Spot;
 import com.naivez.entity.User;
-import com.naivez.entity.enums.OrderStatus;
 import com.naivez.entity.enums.PaymentStatus;
 import com.naivez.entity.enums.ReservationStatus;
 import com.naivez.entity.enums.Role;
+import lombok.experimental.UtilityClass;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
+@UtilityClass
 public class DataBuilder {
 
     public static User createUser(){
@@ -40,26 +38,16 @@ public class DataBuilder {
                 .build();
     }
 
-    public static Spot createSpot(){
-        return Spot.builder()
-                .tableNumber(10)
-                .seats(4)
-                .restaurant(createRestaurant())
-                .build();
-    }
-
-    public static Reservation createReservation(){
+    public static Reservation createReservation() {
         return Reservation.builder()
+                .time(Instant.now())
                 .guests(5)
                 .status(ReservationStatus.CONFIRMED)
-                .build();
-    }
-
-    public static Payment createPayment(){
-        return Payment.builder()
-                .amount(new BigDecimal("150.00"))
-                .status(PaymentStatus.PENDING)
-                .reservation(createReservation())
+                .amount(BigDecimal.valueOf(100.00))
+                .paymentTime(null)
+                .paymentStatus(PaymentStatus.PENDING)
+                .user(createUser())
+                .restaurant(createRestaurant())
                 .build();
     }
 
@@ -72,21 +60,11 @@ public class DataBuilder {
                 .build();
     }
 
-    public static Order createOrder(){
-        return Order.builder()
-                .time(LocalDateTime.now().plusHours(1))
-                .status(OrderStatus.PENDING)
+    public static ReservationMenuItem createReservationMenuItem() {
+        return ReservationMenuItem.builder()
                 .reservation(createReservation())
-                .user(createUser())
-                .restaurant(createRestaurant())
-                .build();
-    }
-
-    public static OrderMenuItem createOrderMenuItem(){
-        return OrderMenuItem.builder()
-                .quantity(2)
-                .order(createOrder())
                 .menuItem(createMenuItem())
+                .quantity(5)
                 .build();
     }
 
@@ -96,6 +74,7 @@ public class DataBuilder {
                 .description("Great")
                 .user(createUser())
                 .restaurant(createRestaurant())
+                .time(Instant.now())
                 .build();
     }
 
@@ -103,16 +82,8 @@ public class DataBuilder {
         return Event.builder()
                 .name("Some event")
                 .description("Some description")
+                .time(Instant.now().plus(1, ChronoUnit.DAYS))
                 .restaurant(createRestaurant())
                 .build();
     }
-
-    public static BlackList createBlackList(){
-        return BlackList.builder()
-                .reason("Some reason")
-                .user(createUser())
-                .restaurant(createRestaurant())
-                .build();
-    }
-
 }
