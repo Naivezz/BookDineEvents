@@ -39,7 +39,7 @@ public class UserDao {
                 .select(user)
                 .from(user)
                 .where(predicate)
-                .setHint("javax.persistence.fetchgraph",session.getEntityGraph("withReservationAndBlackList"))
+                .setHint("javax.persistence.fetchgraph",session.getEntityGraph("withReservations"))
                 .fetch();
     }
 
@@ -56,7 +56,7 @@ public class UserDao {
                 .select(user)
                 .from(user)
                 .where(predicate)
-                .setHint("javax.persistence.fetchgraph",session.getEntityGraph("withReservationAndBlackList"))
+                .setHint("javax.persistence.fetchgraph",session.getEntityGraph("withReservations"))
                 .fetch();
     }
 
@@ -71,7 +71,7 @@ public class UserDao {
         );
 
         return session.createQuery(criteria)
-                .setHint("javax.persistence.fetchgraph",session.getEntityGraph("withReservationAndBlackList"))
+                .setHint("javax.persistence.fetchgraph",session.getEntityGraph("withReservations"))
                 .list();
     }
 
