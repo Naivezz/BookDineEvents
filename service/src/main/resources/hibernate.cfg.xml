@@ -12,17 +12,13 @@
     <property name="show_sql">true</property>
     <property name="format_sql">true</property>
 
-    <mapping class="com.naivez.entity.BlackList"/>
     <mapping class="com.naivez.entity.Event"/>
     <mapping class="com.naivez.entity.MenuItem"/>
-    <mapping class="com.naivez.entity.Order"/>
-    <mapping class="com.naivez.entity.OrderMenuItem"/>
-    <mapping class="com.naivez.entity.Payment"/>
     <mapping class="com.naivez.entity.Reservation"/>
     <mapping class="com.naivez.entity.Restaurant"/>
     <mapping class="com.naivez.entity.Review"/>
-    <mapping class="com.naivez.entity.Spot"/>
     <mapping class="com.naivez.entity.User"/>
+    <mapping class="com.naivez.entity.ReservationMenuItem"/>
 
   </session-factory>
 </hibernate-configuration>
