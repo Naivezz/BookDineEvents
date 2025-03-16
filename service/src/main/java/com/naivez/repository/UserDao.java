@@ -1,4 +1,4 @@
-package com.naivez.dao;
+package com.naivez.repository;
 
 import com.naivez.dto.UserDto;
 import com.naivez.entity.User;
@@ -39,7 +39,7 @@ public class UserDao {
                 .select(user)
                 .from(user)
                 .where(predicate)
-                .setHint("javax.persistence.fetchgraph",session.getEntityGraph("withReservationAndBlackList"))
+                .setHint("javax.persistence.fetchgraph",session.getEntityGraph("withReservations"))
                 .fetch();
     }
 
@@ -50,13 +50,14 @@ public class UserDao {
                 .add(userDto.getEmail(), user.email::eq)
                 .add(userDto.getPassword(), user.password::eq)
                 .add(userDto.getPhoneNumber(), user.phoneNumber::eq)
+                .add(userDto.isBlacklisted(),user.isBlacklisted::eq)
                 .buildOr();
 
         return new JPAQuery<User>(session)
                 .select(user)
                 .from(user)
                 .where(predicate)
-                .setHint("javax.persistence.fetchgraph",session.getEntityGraph("withReservationAndBlackList"))
+                .setHint("javax.persistence.fetchgraph",session.getEntityGraph("withReservations"))
                 .fetch();
     }
 
@@ -71,7 +72,7 @@ public class UserDao {
         );
 
         return session.createQuery(criteria)
-                .setHint("javax.persistence.fetchgraph",session.getEntityGraph("withReservationAndBlackList"))
+                .setHint("javax.persistence.fetchgraph",session.getEntityGraph("withReservations"))
                 .list();
     }
 

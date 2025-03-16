@@ -20,7 +20,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Entity
 @Builder
-@Table(name = "menu_item")
 public class MenuItem implements BaseEntity<Long> {
 
     @Id

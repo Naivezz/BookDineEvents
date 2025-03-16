@@ -1,5 +1,6 @@
 package com.naivez.entity;
 
+import com.naivez.entity.enums.PaymentStatus;
 import com.naivez.entity.enums.ReservationStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,14 +11,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -37,14 +37,18 @@ public class Reservation implements BaseEntity<Long> {
     @Enumerated(EnumType.STRING)
     private ReservationStatus status;
 
+    private BigDecimal amount;
+
+    private Instant paymentTime;
+
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus paymentStatus;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "spot_id")
-    private Spot spot;
-
-    @OneToOne(mappedBy = "reservation")
-    private Order order;
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 }

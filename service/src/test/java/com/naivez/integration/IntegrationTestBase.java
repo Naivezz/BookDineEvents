@@ -1,4 +1,4 @@
-package com.naivez.integration.entity;
+package com.naivez.integration;
 
 import jakarta.persistence.EntityManager;
 import org.hibernate.Session;

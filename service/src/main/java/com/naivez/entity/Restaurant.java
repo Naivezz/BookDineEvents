@@ -19,8 +19,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"spots","reviews","events","blacklists"})
-@EqualsAndHashCode(exclude = {"spots","reviews","events","blacklists"})
+@ToString(exclude = {"reviews", "events"})
+@EqualsAndHashCode(exclude = {"reviews", "events"})
 @Entity
 @Builder
 public class Restaurant implements BaseEntity<Long> {
@@ -39,17 +39,9 @@ public class Restaurant implements BaseEntity<Long> {
 
     @Builder.Default
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Spot> spots = new ArrayList<>();
-
-    @Builder.Default
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
 
     @Builder.Default
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Event> events = new ArrayList<>();
-
-    @Builder.Default
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<BlackList> blacklists = new ArrayList<>();
 }
