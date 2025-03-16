@@ -1,4 +1,4 @@
-package com.naivez.dao;
+package com.naivez.repository;
 
 import com.naivez.dto.UserDto;
 import com.naivez.entity.User;
@@ -50,6 +50,7 @@ public class UserDao {
                 .add(userDto.getEmail(), user.email::eq)
                 .add(userDto.getPassword(), user.password::eq)
                 .add(userDto.getPhoneNumber(), user.phoneNumber::eq)
+                .add(userDto.isBlacklisted(),user.isBlacklisted::eq)
                 .buildOr();
 
         return new JPAQuery<User>(session)

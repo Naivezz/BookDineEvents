@@ -1,4 +1,4 @@
-package com.naivez.dao;
+package com.naivez.repository;
 
 import com.naivez.entity.BaseEntity;
 
@@ -10,7 +10,7 @@ public interface Repository<K extends Serializable, E extends BaseEntity<K>> {
 
     E save(E entity);
 
-    void delete(K entity);
+    void delete(E entity);
 
     void update(E entity);
 
