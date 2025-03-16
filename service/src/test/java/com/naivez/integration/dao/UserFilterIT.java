@@ -1,10 +1,9 @@
 package com.naivez.integration.dao;
 
-import com.naivez.dao.UserDao;
+import com.naivez.repository.UserDao;
 import com.naivez.dto.UserDto;
 import com.naivez.entity.User;
-import com.naivez.integration.entity.IntegrationTestBase;
-import org.hibernate.Session;
+import com.naivez.integration.IntegrationTestBase;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
