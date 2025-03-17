@@ -3,44 +3,21 @@ package com.naivez.repository;
 import com.naivez.dto.UserDto;
 import com.naivez.entity.User;
 import com.naivez.entity.User_;
+import com.naivez.repository.predicate.QPredicate;
 import com.querydsl.jpa.impl.JPAQuery;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.EntityManager;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static com.naivez.entity.QUser.*;
+import static com.naivez.entity.QUser.user;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class UserDao {
+@Repository
+public class UserRepository extends RepositoryBase<Long, User> {
 
-    private static final UserDao INSTANCE = new UserDao();
-
-    public static UserDao getInstance() {
-        return INSTANCE;
-    }
-
-    public List<User> findAllByFirstname(Session session, UserDto userDto){
-        return new JPAQuery<User>(session)
-                .select(user)
-                .from(user)
-                .where(user.firstName.eq(userDto.getFirstName()))
-                .fetch();
-    }
-
-    public List<User> findByFirstnameAndLastName(Session session, UserDto userDto){
-        var predicate = QPredicate.builder()
-                .add(userDto.getFirstName(), user.firstName::eq)
-                .add(userDto.getLastName(), user.lastName::eq)
-                .buildAnd();
-
-        return new JPAQuery<User>(session)
-                .select(user)
-                .from(user)
-                .where(predicate)
-                .setHint("javax.persistence.fetchgraph",session.getEntityGraph("withReservations"))
-                .fetch();
+    public UserRepository(EntityManager entityManager) {
+        super(User.class, entityManager);
     }
 
     public List<User> findByAnyField(Session session, UserDto userDto) {
