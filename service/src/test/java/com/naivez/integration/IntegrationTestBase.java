@@ -1,43 +1,36 @@
 package com.naivez.integration;
 
+import com.naivez.config.RepositoryConfig;
 import jakarta.persistence.EntityManager;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-
-import java.lang.reflect.Proxy;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public abstract class IntegrationTestBase {
-
-    private static SessionFactory sessionFactory;
-    protected static Session session;
+    protected static EntityManager entityManager;
+    protected static AnnotationConfigApplicationContext context;
 
     @BeforeAll
     static void init() {
-        var configuration = new Configuration();
-        configuration.configure();
-        sessionFactory = configuration.buildSessionFactory();
-        session = (Session) Proxy.newProxyInstance(SessionFactory.class.getClassLoader(), new Class[]{Session.class},
-                (proxy, method, args) -> method.invoke(sessionFactory.getCurrentSession(), args));
+        context = new AnnotationConfigApplicationContext(RepositoryConfig.class);
+        entityManager = context.getBean(EntityManager.class);
     }
-
     @AfterAll
     static void close() {
-        sessionFactory.close();
+        context.close();
     }
 
     @BeforeEach
-    void getSession() {
-        session.beginTransaction();
+    void startTransaction() {
+        if (!entityManager.getTransaction().isActive()) {
+            entityManager.getTransaction().begin();
+        }
     }
 
     @AfterEach
-    void rollbackAndClose() {
-        session.getTransaction().rollback();
+    void rollbackTransaction() {
+        entityManager.getTransaction().rollback();
     }
-
 }
