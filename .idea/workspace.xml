@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f49d06e8-44dc-4427-b465-15cbb54f918f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/com/naivez/ApplicationRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/com/naivez/ApplicationRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/com/naivez/config/RepositoryConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/com/naivez/util/HibernateUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/resources/hibernate.cfg.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/test/java/com/naivez/integration/IntegrationTestBase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/test/java/com/naivez/integration/repository/EventRepositoryIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/test/java/com/naivez/integration/repository/EventRepositoryIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/test/java/com/naivez/integration/repository/MenuItemRepositoryIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/test/java/com/naivez/integration/repository/MenuItemRepositoryIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/test/java/com/naivez/integration/repository/ReservationMenuItemRepositoryIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/test/java/com/naivez/integration/repository/ReservationMenuItemRepositoryIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/test/java/com/naivez/integration/repository/ReservationRepositoryIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/test/java/com/naivez/integration/repository/ReservationRepositoryIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/test/java/com/naivez/integration/repository/RestaurantRepositoryIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/test/java/com/naivez/integration/repository/RestaurantRepositoryIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/test/java/com/naivez/integration/repository/ReviewRepositoryIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/test/java/com/naivez/integration/repository/ReviewRepositoryIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/test/java/com/naivez/integration/repository/UserRepositoryIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/test/java/com/naivez/integration/repository/UserRepositoryIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/test/java/com/naivez/unit/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/test/resources/hibernate.cfg.xml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="AnnotationType" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/8-convert-dao-to-spring-beans" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2sVaKvFDMLi2tvkUyFkYG6EFx1G" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "feature/9-create-spring-boot-application-and-delete-unnecessary-classes",
+    "jdk.selected.JAVA_MODULE": "openjdk-21",
+    "last_opened_file_path": "C:/Users/ASUS ROG/hibernate-starter",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.3",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ASUS ROG\IdeaProjects\my-first-app\service\src\test\resources" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="BlackListRepositoryIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.naivez.integration.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.naivez.integration.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.naivez.integration.dao.BlackListRepositoryIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EventRepositoryIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.naivez.integration.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.naivez.integration.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.naivez.integration.dao.EventRepositoryIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderMenuItemRepositoryIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.naivez.integration.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.naivez.integration.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.naivez.integration.dao.OrderMenuItemRepositoryIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderMenuItemRepositoryIT.createOrderMenuItem" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.naivez.integration.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.naivez.integration.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.naivez.integration.dao.OrderMenuItemRepositoryIT" />
+      <option name="METHOD_NAME" value="createOrderMenuItem" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReviewRepositoryIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.naivez.integration.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.naivez.integration.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.naivez.integration.dao.ReviewRepositoryIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.BlackListRepositoryIT" />
+        <item itemvalue="JUnit.ReviewRepositoryIT" />
+        <item itemvalue="JUnit.OrderMenuItemRepositoryIT.createOrderMenuItem" />
+        <item itemvalue="JUnit.OrderMenuItemRepositoryIT" />
+        <item itemvalue="JUnit.EventRepositoryIT" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f49d06e8-44dc-4427-b465-15cbb54f918f" name="Changes" comment="" />
+      <created>1738543137049</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1738543137049</updated>
+      <workItem from="1738543138073" duration="5712000" />
+      <workItem from="1738563135919" duration="2575000" />
+      <workItem from="1738568932233" duration="366000" />
+      <workItem from="1738580809619" duration="1192000" />
+      <workItem from="1738582024079" duration="2403000" />
+      <workItem from="1738584958716" duration="2652000" />
+      <workItem from="1738923982847" duration="48000" />
+      <workItem from="1739361235672" duration="3140000" />
+      <workItem from="1739379518701" duration="3336000" />
+      <workItem from="1739463506024" duration="4397000" />
+      <workItem from="1739531888751" duration="14817000" />
+      <workItem from="1739609748302" duration="1363000" />
+      <workItem from="1739611387690" duration="2050000" />
+      <workItem from="1739708276829" duration="3054000" />
+      <workItem from="1739711394857" duration="3211000" />
+      <workItem from="1739716132101" duration="1998000" />
+      <workItem from="1739718160947" duration="1997000" />
+      <workItem from="1739741613045" duration="4261000" />
+      <workItem from="1739878389073" duration="461000" />
+      <workItem from="1740083315306" duration="27000" />
+      <workItem from="1740084131886" duration="1658000" />
+      <workItem from="1740085856601" duration="2088000" />
+      <workItem from="1740090225673" duration="273000" />
+      <workItem from="1740090520321" duration="3463000" />
+      <workItem from="1740168757452" duration="40000" />
+      <workItem from="1740337846702" duration="5992000" />
+      <workItem from="1740344452504" duration="4563000" />
+      <workItem from="1740351600047" duration="6884000" />
+      <workItem from="1740426213053" duration="349000" />
+      <workItem from="1740926945593" duration="42000" />
+      <workItem from="1740935737229" duration="2445000" />
+      <workItem from="1740942749053" duration="24000" />
+      <workItem from="1740943337492" duration="1481000" />
+      <workItem from="1740944949672" duration="6706000" />
+      <workItem from="1741000837187" duration="4161000" />
+      <workItem from="1741020018964" duration="30000" />
+      <workItem from="1741031094508" duration="6000" />
+      <workItem from="1741042227228" duration="672000" />
+      <workItem from="1741097039120" duration="2489000" />
+      <workItem from="1741108547934" duration="91000" />
+      <workItem from="1741131994664" duration="25000" />
+      <workItem from="1741195386265" duration="955000" />
+      <workItem from="1741221334478" duration="604000" />
+      <workItem from="1741536507940" duration="3533000" />
+      <workItem from="1741609543190" duration="1191000" />
+      <workItem from="1741610763152" duration="4346000" />
+      <workItem from="1741618978503" duration="321000" />
+      <workItem from="1741625307658" duration="5634000" />
+      <workItem from="1742152934335" duration="4581000" />
+      <workItem from="1742160594344" duration="4261000" />
+      <workItem from="1742168283640" duration="8286000" />
+      <workItem from="1742220052133" duration="4000" />
+      <workItem from="1742857553551" duration="624000" />
+      <workItem from="1742922596220" duration="2266000" />
+      <workItem from="1743239302485" duration="1333000" />
+      <workItem from="1743368158897" duration="2160000" />
+      <workItem from="1743373395449" duration="1907000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="dependencySupport" implementationName="executable:kubectl" />
+  </component>
+</project>

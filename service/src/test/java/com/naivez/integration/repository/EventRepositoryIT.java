@@ -1,18 +1,21 @@
 package com.naivez.integration.repository;
 
+import com.naivez.annotation.IT;
 import com.naivez.entity.Event;
-import com.naivez.integration.IntegrationTestBase;
 import com.naivez.repository.EventRepository;
 import com.naivez.repository.RestaurantRepository;
 import com.naivez.util.DataBuilder;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class EventRepositoryIT extends IntegrationTestBase {
+@IT
+@RequiredArgsConstructor
+public class EventRepositoryIT {
 
-    private EventRepository eventRepository = context.getBean(EventRepository.class);
-    private RestaurantRepository restaurantRepository = context.getBean(RestaurantRepository.class);
+    private final EventRepository eventRepository;
+    private final RestaurantRepository restaurantRepository;
 
     @Test
     void saveEvent() {
