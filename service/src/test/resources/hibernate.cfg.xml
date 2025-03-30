@@ -14,7 +14,6 @@
     <property name="hibernate.hbm2ddl.auto">create</property>
     <property name="hibernate.current_session_context_class">thread</property>
 
-
     <mapping class="com.naivez.entity.Event"/>
     <mapping class="com.naivez.entity.MenuItem"/>
     <mapping class="com.naivez.entity.Reservation"/>
