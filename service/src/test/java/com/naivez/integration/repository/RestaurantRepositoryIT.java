@@ -1,16 +1,19 @@
 package com.naivez.integration.repository;
 
+import com.naivez.annotation.IT;
 import com.naivez.entity.Restaurant;
-import com.naivez.integration.IntegrationTestBase;
 import com.naivez.repository.RestaurantRepository;
 import com.naivez.util.DataBuilder;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RestaurantRepositoryIT extends IntegrationTestBase {
+@IT
+@RequiredArgsConstructor
+public class RestaurantRepositoryIT {
 
-    private RestaurantRepository restaurantRepository = context.getBean(RestaurantRepository.class);
+    private final RestaurantRepository restaurantRepository;
 
     @Test
     void saveRestaurant() {

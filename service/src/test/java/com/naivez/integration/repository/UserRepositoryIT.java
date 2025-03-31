@@ -1,16 +1,19 @@
 package com.naivez.integration.repository;
 
+import com.naivez.annotation.IT;
 import com.naivez.entity.User;
-import com.naivez.integration.IntegrationTestBase;
 import com.naivez.repository.UserRepository;
 import com.naivez.util.DataBuilder;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class UserRepositoryIT extends IntegrationTestBase {
+@IT
+@RequiredArgsConstructor
+public class UserRepositoryIT {
 
-    private UserRepository userRepository = context.getBean(UserRepository.class);
+    private final UserRepository userRepository;
 
     @Test
     void saveUser() {
