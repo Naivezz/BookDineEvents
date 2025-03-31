@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:mtg_test
+    username:
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    properties.hibernate:
+      show_sql: true
+      format_sql: true
+      hbm2ddl.auto: create-drop
+      current_session_context_class: thread
