@@ -1,20 +1,23 @@
 package com.naivez.integration.repository;
 
+import com.naivez.annotation.IT;
 import com.naivez.entity.Review;
-import com.naivez.integration.IntegrationTestBase;
 import com.naivez.repository.ReviewRepository;
 import com.naivez.repository.RestaurantRepository;
 import com.naivez.repository.UserRepository;
 import com.naivez.util.DataBuilder;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ReviewRepositoryIT extends IntegrationTestBase {
+@IT
+@RequiredArgsConstructor
+public class ReviewRepositoryIT {
 
-    private ReviewRepository reviewRepository = context.getBean(ReviewRepository.class);
-    private RestaurantRepository restaurantRepository = context.getBean(RestaurantRepository.class);
-    private UserRepository userRepository = context.getBean(UserRepository.class);
+    private final ReviewRepository reviewRepository;
+    private final RestaurantRepository restaurantRepository;
+    private final UserRepository userRepository;
 
     @Test
     void saveReview() {

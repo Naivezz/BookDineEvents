@@ -1,20 +1,23 @@
 package com.naivez.integration.repository;
 
+import com.naivez.annotation.IT;
 import com.naivez.entity.ReservationMenuItem;
-import com.naivez.integration.IntegrationTestBase;
 import com.naivez.repository.MenuItemRepository;
 import com.naivez.repository.ReservationMenuItemRepository;
 import com.naivez.repository.ReservationRepository;
 import com.naivez.util.DataBuilder;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ReservationMenuItemRepositoryIT extends IntegrationTestBase {
+@IT
+@RequiredArgsConstructor
+public class ReservationMenuItemRepositoryIT {
 
-    private ReservationMenuItemRepository reservationMenuItemRepository = context.getBean(ReservationMenuItemRepository.class);
-    private ReservationRepository reservationRepository = context.getBean(ReservationRepository.class);
-    private MenuItemRepository menuItemRepository = context.getBean(MenuItemRepository.class);
+    private final ReservationMenuItemRepository reservationMenuItemRepository;
+    private final ReservationRepository reservationRepository;
+    private final MenuItemRepository menuItemRepository;
 
     @Test
     void saveReservationMenuItem() {
