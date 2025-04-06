@@ -1,19 +1,22 @@
 package com.naivez.integration.repository;
 
-import com.naivez.annotation.IT;
 import com.naivez.entity.Restaurant;
 import com.naivez.repository.RestaurantRepository;
 import com.naivez.util.DataBuilder;
 import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@IT
 @RequiredArgsConstructor
-public class RestaurantRepositoryIT {
+public class RestaurantRepositoryIT extends IntegrationTestBase {
 
     private final RestaurantRepository restaurantRepository;
+    @BeforeEach
+    void setUp() {
+        restaurantRepository.deleteAll();
+    }
 
     @Test
     void saveRestaurant() {
@@ -40,7 +43,7 @@ public class RestaurantRepositoryIT {
         restaurantRepository.save(restaurant);
 
         restaurant.setName("Updated Restaurant");
-        restaurantRepository.update(restaurant);
+        restaurantRepository.save(restaurant);
 
         assertThat(restaurantRepository.findById(restaurant.getId()))
                 .map(Restaurant::getName)

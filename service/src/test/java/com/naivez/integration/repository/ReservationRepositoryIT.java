@@ -1,6 +1,5 @@
 package com.naivez.integration.repository;
 
-import com.naivez.annotation.IT;
 import com.naivez.entity.Reservation;
 import com.naivez.repository.ReservationRepository;
 import com.naivez.repository.RestaurantRepository;
@@ -11,9 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@IT
 @RequiredArgsConstructor
-public class ReservationRepositoryIT {
+public class ReservationRepositoryIT extends IntegrationTestBase {
 
     private final ReservationRepository reservationRepository;
     private final RestaurantRepository restaurantRepository;
@@ -27,6 +25,8 @@ public class ReservationRepositoryIT {
 
         restaurantRepository.save(restaurant);
         userRepository.save(user);
+        reservation.setRestaurant(restaurant);
+        reservation.setUser(user);
         reservationRepository.save(reservation);
 
         assertThat(reservationRepository.findById(reservation.getId())).isPresent();
@@ -60,7 +60,7 @@ public class ReservationRepositoryIT {
         reservationRepository.save(reservation);
 
         reservation.setGuests(6);
-        reservationRepository.update(reservation);
+        reservationRepository.save(reservation);
 
         assertThat(reservationRepository.findById(reservation.getId()))
                 .map(Reservation::getGuests)

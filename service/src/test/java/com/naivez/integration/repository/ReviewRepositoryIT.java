@@ -1,6 +1,5 @@
 package com.naivez.integration.repository;
 
-import com.naivez.annotation.IT;
 import com.naivez.entity.Review;
 import com.naivez.repository.ReviewRepository;
 import com.naivez.repository.RestaurantRepository;
@@ -11,9 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@IT
 @RequiredArgsConstructor
-public class ReviewRepositoryIT {
+public class ReviewRepositoryIT extends IntegrationTestBase {
 
     private final ReviewRepository reviewRepository;
     private final RestaurantRepository restaurantRepository;
@@ -24,9 +22,11 @@ public class ReviewRepositoryIT {
         var restaurant = DataBuilder.createRestaurant();
         var user = DataBuilder.createUser();
         var review = DataBuilder.createReview();
-
         restaurantRepository.save(restaurant);
         userRepository.save(user);
+        review.setRestaurant(restaurant);
+        review.setUser(user);
+
         reviewRepository.save(review);
 
         assertThat(reviewRepository.findById(review.getId())).isPresent();
@@ -39,6 +39,8 @@ public class ReviewRepositoryIT {
         var review = DataBuilder.createReview();
         restaurantRepository.save(restaurant);
         userRepository.save(user);
+        review.setRestaurant(restaurant);
+        review.setUser(user);
         reviewRepository.save(review);
 
         reviewRepository.delete(review);
@@ -53,11 +55,14 @@ public class ReviewRepositoryIT {
         var review = DataBuilder.createReview();
         restaurantRepository.save(restaurant);
         userRepository.save(user);
+        review.setRestaurant(restaurant);
+        review.setUser(user);
         reviewRepository.save(review);
+
 
         review.setRating(4);
         review.setDescription("Updated description");
-        reviewRepository.update(review);
+        reviewRepository.save(review);
 
         assertThat(reviewRepository.findById(review.getId()))
                 .map(Review::getRating)
@@ -74,6 +79,8 @@ public class ReviewRepositoryIT {
         var review = DataBuilder.createReview();
         restaurantRepository.save(restaurant);
         userRepository.save(user);
+        review.setRestaurant(restaurant);
+        review.setUser(user);
         reviewRepository.save(review);
 
         var expectedReview = reviewRepository.findById(review.getId());

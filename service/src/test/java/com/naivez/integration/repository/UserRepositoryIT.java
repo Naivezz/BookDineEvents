@@ -1,19 +1,22 @@
 package com.naivez.integration.repository;
 
-import com.naivez.annotation.IT;
 import com.naivez.entity.User;
 import com.naivez.repository.UserRepository;
 import com.naivez.util.DataBuilder;
 import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@IT
 @RequiredArgsConstructor
-public class UserRepositoryIT {
+public class UserRepositoryIT extends IntegrationTestBase {
 
     private final UserRepository userRepository;
+    @BeforeEach
+    public void setUp() {
+        userRepository.deleteAll();
+    }
 
     @Test
     void saveUser() {
@@ -40,7 +43,7 @@ public class UserRepositoryIT {
         userRepository.save(user);
 
         user.setFirstName("Updated first name");
-        userRepository.update(user);
+        userRepository.save(user);
 
         assertThat(userRepository.findById(user.getId()))
                 .map(User::getFirstName)

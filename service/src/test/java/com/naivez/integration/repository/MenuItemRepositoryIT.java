@@ -1,6 +1,5 @@
 package com.naivez.integration.repository;
 
-import com.naivez.annotation.IT;
 import com.naivez.entity.MenuItem;
 import com.naivez.repository.MenuItemRepository;
 import com.naivez.repository.RestaurantRepository;
@@ -10,9 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@IT
 @RequiredArgsConstructor
-public class MenuItemRepositoryIT {
+public class MenuItemRepositoryIT extends IntegrationTestBase {
 
     private final MenuItemRepository menuItemRepository;
     private final RestaurantRepository restaurantRepository;
@@ -21,10 +19,10 @@ public class MenuItemRepositoryIT {
     void saveMenuItem() {
         var restaurant = DataBuilder.createRestaurant();
         var menuItem = DataBuilder.createMenuItem();
-
         restaurantRepository.save(restaurant);
-        menuItemRepository.save(menuItem);
         menuItem.setRestaurant(restaurant);
+
+        menuItemRepository.save(menuItem);
 
         assertThat(menuItemRepository.findById(menuItem.getId())).isPresent();
     }
@@ -34,8 +32,8 @@ public class MenuItemRepositoryIT {
         var restaurant = DataBuilder.createRestaurant();
         var menuItem = DataBuilder.createMenuItem();
         restaurantRepository.save(restaurant);
-        menuItemRepository.save(menuItem);
         menuItem.setRestaurant(restaurant);
+        menuItemRepository.save(menuItem);
 
         menuItemRepository.delete(menuItem);
 
@@ -47,11 +45,11 @@ public class MenuItemRepositoryIT {
         var restaurant = DataBuilder.createRestaurant();
         var menuItem = DataBuilder.createMenuItem();
         restaurantRepository.save(restaurant);
-        menuItemRepository.save(menuItem);
         menuItem.setRestaurant(restaurant);
+        menuItemRepository.save(menuItem);
 
         menuItem.setDescription("Updated description");
-        menuItemRepository.update(menuItem);
+        menuItemRepository.save(menuItem);
 
         assertThat(menuItemRepository.findById(menuItem.getId()))
                 .map(MenuItem::getDescription)
@@ -63,8 +61,8 @@ public class MenuItemRepositoryIT {
         var restaurant = DataBuilder.createRestaurant();
         var menuItem = DataBuilder.createMenuItem();
         restaurantRepository.save(restaurant);
-        menuItemRepository.save(menuItem);
         menuItem.setRestaurant(restaurant);
+        menuItemRepository.save(menuItem);
 
         var expectedMenuItem = menuItemRepository.findById(menuItem.getId());
 
