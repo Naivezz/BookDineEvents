@@ -1,4 +1,4 @@
-package com.naivez.repository.predicate;
+package com.naivez.predicate;
 
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Predicate;
