@@ -1,12 +1,7 @@
 package com.naivez.repository;
 
 import com.naivez.entity.Reservation;
-import jakarta.persistence.EntityManager;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class ReservationRepository extends RepositoryBase<Long, Reservation>{
-    public ReservationRepository(EntityManager entityManager) {
-        super(Reservation.class, entityManager);
-    }
+public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 }
