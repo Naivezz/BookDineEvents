@@ -20,10 +20,11 @@ import java.time.temporal.ChronoUnit;
 public class DataBuilder {
 
     public static User createUser(){
+        String uniqueEmail = "test" + System.currentTimeMillis() + (int)(Math.random() * 1000) + "@gmail.com";
         return User.builder()
                 .firstName("Test firstname")
                 .lastName("Test lastname")
-                .email("test@gmail.com")
+                .email(uniqueEmail)
                 .password("some password")
                 .phoneNumber("+26262392")
                 .role(Role.USER)
