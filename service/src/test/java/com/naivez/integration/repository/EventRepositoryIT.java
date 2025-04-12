@@ -1,6 +1,5 @@
 package com.naivez.integration.repository;
 
-import com.naivez.annotation.IT;
 import com.naivez.entity.Event;
 import com.naivez.repository.EventRepository;
 import com.naivez.repository.RestaurantRepository;
@@ -10,9 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@IT
 @RequiredArgsConstructor
-public class EventRepositoryIT{
+public class EventRepositoryIT extends IntegrationTestBase {
 
     private final EventRepository eventRepository;
     private final RestaurantRepository restaurantRepository;
@@ -23,6 +21,7 @@ public class EventRepositoryIT{
         var event = DataBuilder.createEvent();
 
         restaurantRepository.save(restaurant);
+        event.setRestaurant(restaurant);
         eventRepository.save(event);
 
         assertThat(eventRepository.findById(event.getId())).isPresent();
@@ -33,6 +32,7 @@ public class EventRepositoryIT{
         var restaurant = DataBuilder.createRestaurant();
         var event = DataBuilder.createEvent();
         restaurantRepository.save(restaurant);
+        event.setRestaurant(restaurant);
         eventRepository.save(event);
 
         eventRepository.delete(event);
@@ -45,10 +45,11 @@ public class EventRepositoryIT{
         var restaurant = DataBuilder.createRestaurant();
         var event = DataBuilder.createEvent();
         restaurantRepository.save(restaurant);
+        event.setRestaurant(restaurant);
         eventRepository.save(event);
 
         event.setName("Updated Event");
-        eventRepository.update(event);
+        eventRepository.save(event);
 
         assertThat(eventRepository.findById(event.getId()))
                 .map(Event::getName)
@@ -60,6 +61,7 @@ public class EventRepositoryIT{
         var restaurant = DataBuilder.createRestaurant();
         var event = DataBuilder.createEvent();
         restaurantRepository.save(restaurant);
+        event.setRestaurant(restaurant);
         eventRepository.save(event);
 
         var expectedEvent = eventRepository.findById(event.getId());

@@ -1,3 +1,6 @@
+--liquibase formatted sql
+
+--changeset naivez:1
 CREATE TABLE users (
     id BIGSERIAL PRIMARY KEY,
     firstname VARCHAR(128) NOT NULL,
@@ -10,6 +13,7 @@ CREATE TABLE users (
     blacklist_reason TEXT
 );
 
+--changeset naivez:2
 CREATE TABLE restaurant (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(128) NOT NULL,
@@ -18,6 +22,7 @@ CREATE TABLE restaurant (
     phone_number VARCHAR(64) NOT NULL
 );
 
+--changeset naivez:3
 CREATE TABLE reservation (
     id BIGSERIAL PRIMARY KEY,
     time TIMESTAMP NOT NULL,
@@ -30,6 +35,7 @@ CREATE TABLE reservation (
     payment_status VARCHAR(32)
 );
 
+--changeset naivez:4
 CREATE TABLE menu_item (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -39,6 +45,7 @@ CREATE TABLE menu_item (
     restaurant_id BIGINT NOT NULL REFERENCES restaurant(id) ON DELETE CASCADE
 );
 
+--changeset naivez:5
 CREATE TABLE reservation_menu_item (
     id BIGSERIAL PRIMARY KEY,
     reservation_id BIGINT NOT NULL REFERENCES reservation(id) ON DELETE CASCADE,
@@ -46,6 +53,7 @@ CREATE TABLE reservation_menu_item (
     quantity INT NOT NULL
 );
 
+--changeset naivez:6
 CREATE TABLE review (
     id SERIAL PRIMARY KEY,
     rating INTEGER CHECK (rating BETWEEN 1 AND 5),
@@ -56,6 +64,8 @@ CREATE TABLE review (
     restaurant_id BIGINT NOT NULL REFERENCES restaurant(id) ON DELETE CASCADE
 );
 
+
+--changeset naivez:7
 CREATE TABLE event (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,

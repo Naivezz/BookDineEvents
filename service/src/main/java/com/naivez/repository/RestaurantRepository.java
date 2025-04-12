@@ -1,12 +1,7 @@
 package com.naivez.repository;
 
 import com.naivez.entity.Restaurant;
-import jakarta.persistence.EntityManager;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class RestaurantRepository extends RepositoryBase<Long, Restaurant>{
-    public RestaurantRepository(EntityManager entityManager) {
-        super(Restaurant.class, entityManager);
-    }
+public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 }

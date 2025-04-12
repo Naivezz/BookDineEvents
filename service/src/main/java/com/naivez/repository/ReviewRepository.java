@@ -1,12 +1,7 @@
 package com.naivez.repository;
 
 import com.naivez.entity.Review;
-import jakarta.persistence.EntityManager;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class ReviewRepository extends RepositoryBase<Long, Review>{
-    public ReviewRepository(EntityManager entityManager) {
-        super(Review.class, entityManager);
-    }
+public interface ReviewRepository extends JpaRepository<Review, Long> {
 }
