@@ -17,7 +17,7 @@ public class UserReadDto {
     String email;
     String phoneNumber;
     Role role;
-    boolean isBlacklisted;
+    Boolean isBlacklisted;
     String blacklistReason;
     List<ReservationReadDto> reservations;
 }
