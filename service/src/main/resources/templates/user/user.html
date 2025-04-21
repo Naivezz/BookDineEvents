@@ -2,44 +2,47 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>User</title>
+    <title>User Profile</title>
 </head>
 <body>
-<form th:action="@{/users/{userId}/update(userId=${user.id})}" method="post" th:object="${user}">
-    <label for="firstName">First Name:
-        <input id="firstName" type="text" name="firstName" th:value="*{firstName}">
-    </label><br>
+<h1>User Information</h1>
 
-    <label for="lastName">Last Name:
-        <input id="lastName" type="text" name="lastName" th:value="*{lastName}">
-    </label><br>
+<div>
+    <p><strong>ID:</strong> <span th:text="${user.id}"></span></p>
+    <p><strong>First Name:</strong> <span th:text="${user.firstName}"></span></p>
+    <p><strong>Last Name:</strong> <span th:text="${user.lastName}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+    <p><strong>Phone Number:</strong> <span th:text="${user.phoneNumber}"></span></p>
+    <p><strong>Role:</strong> <span th:text="${user.role}"></span></p>
+    <p><strong>Blacklisted:</strong> <span th:text="${user.isBlacklisted} ? 'Yes' : 'No'"></span></p>
 
-    <label for="email">Email:
-        <input id="email" type="email" name="email" th:value="*{email}">
-    </label><br>
-
-    <label for="phoneNumber">Phone Number:
-        <input id="phoneNumber" type="text" name="phoneNumber" th:value="*{phoneNumber}">
-    </label><br>
-
-    <div th:each="role : ${roles}">
-        <input th:id="${role}" type="radio" name="role" th:value="${role}" th:checked="${role == user.role}">
-        <label th:for="${role}" th:text="${role}">Role name</label>
+    <div th:if="${user.isBlacklisted}">
+        <p><strong>Blacklist Reason:</strong> <span th:text="${user.blacklistReason}"></span></p>
     </div>
+</div>
 
-    <label for="isBlacklisted">Blacklisted:
-        <input id="isBlacklisted" type="checkbox" name="blacklisted" th:checked="*{blacklisted}">
-    </label><br>
+<h2>Reservations</h2>
+<div th:if="${user.reservations != null and !user.reservations.isEmpty()}">
+    <ul>
+        <li th:each="res : ${user.reservations}">
+            <span th:text="|Reservation ID: ${res.id}, Status: ${res.status}|"></span>
+        </li>
+    </ul>
+</div>
+<div th:if="${user.reservations == null or user.reservations.isEmpty()}">
+    <p>No reservations found.</p>
+</div>
 
-    <label for="blacklistReason">Blacklist Reason:
-        <input id="blacklistReason" type="text" name="blacklistReason" th:value="*{blacklistReason}">
-    </label><br>
+<a th:href="@{/users}">Back to User List</a>
 
-    <button type="submit">Update</button>
+
+<form th:action="@{'/users/' + ${user.id} + '/delete'}" method="post">
+    <button type="submit" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>
 </form>
 
-<form th:action="@{/users/{userId}/delete(userId=${user.id})}" th:if="${user.role.name() == 'ADMIN'}" method="post">
-    <button type="submit">Remove</button>
+<form th:action="@{'/users/' + ${user.id} + '/update'}" method="get">
+    <button type="submit">Edit</button>
 </form>
+
 </body>
 </html>
