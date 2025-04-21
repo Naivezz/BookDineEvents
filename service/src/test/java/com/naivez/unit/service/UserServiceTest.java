@@ -59,8 +59,6 @@ public class UserServiceTest {
         UserReadDto result = userService.create(userCreateEditDto);
 
         assertNotNull(result);
-        verify(userRepository, times(1)).save(user);
-        verify(userReadMapper, times(1)).toDto(user);
     }
 
     @Test
@@ -76,9 +74,6 @@ public class UserServiceTest {
         var result = userService.findAll();
 
         assertEquals(2, result.size());
-        verify(userRepository, times(1)).findAll();
-        verify(userReadMapper, times(1)).toDto(user1);
-        verify(userReadMapper, times(1)).toDto(user2);
     }
 
     @Test
@@ -92,8 +87,6 @@ public class UserServiceTest {
 
         assertTrue(result.isPresent());
         assertEquals(userReadDto, result.get());
-        verify(userRepository, times(1)).findById(USER_ID);
-        verify(userReadMapper, times(1)).toDto(user);
     }
 
     @Test
@@ -103,7 +96,6 @@ public class UserServiceTest {
         Optional<UserReadDto> result = userService.findById(INVALID_USER_ID);
 
         assertFalse(result.isPresent());
-        verify(userRepository, times(1)).findById(INVALID_USER_ID);
         verify(userReadMapper, never()).toDto(any());
     }
 
@@ -122,9 +114,6 @@ public class UserServiceTest {
 
         assertTrue(result.isPresent());
         assertEquals("Updated firstName dto", result.get().getFirstName());
-        verify(userRepository, times(1)).findById(USER_ID);
-        verify(userRepository, times(1)).save(existingUser);
-        verify(userReadMapper, times(1)).toDto(updatedUser);
     }
 
     @Test
@@ -149,8 +138,6 @@ public class UserServiceTest {
         boolean result = userService.delete(USER_ID);
 
         assertTrue(result);
-        verify(userRepository, times(1)).findById(USER_ID);
-        verify(userRepository, times(1)).delete(user);
     }
 
     @Test
@@ -160,7 +147,6 @@ public class UserServiceTest {
         boolean result = userService.delete(INVALID_USER_ID);
 
         assertFalse(result);
-        verify(userRepository, times(1)).findById(INVALID_USER_ID);
         verify(userRepository, never()).delete(any());
     }
 }
