@@ -1,9 +1,10 @@
 package com.naivez.dto.user;
 
 import lombok.Builder;
+import lombok.Data;
 import lombok.Value;
 
-@Value
+@Data
 @Builder
 public class UserFilter {
 
@@ -13,9 +14,7 @@ public class UserFilter {
 
     String email;
 
-    String password;
-
     String phoneNumber;
 
-    boolean isBlacklisted;
+    Boolean isBlacklisted;
 }

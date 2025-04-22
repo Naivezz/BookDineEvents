@@ -5,6 +5,25 @@
     <title>Users</title>
 </head>
 <body>
+<form action="/users">
+    <label for="firstname">Firstname:
+        <input id="firstname" type="text" name="firstName">
+    </label>
+    <label for="lastname">Lastname:
+        <input id="lastname" type="text" name="lastName">
+    </label>
+    <label for="email">Email:
+        <input id="email" type="text" name="email">
+    </label>
+    <label for="phoneNumber">Phone Number:
+        <input id="phoneNumber" type="text" name="phoneNumber">
+    </label>
+    <label for="isBlacklisted">Blacklisted:
+        <input id="isBlacklisted" type="checkbox" name="isBlacklisted">
+    </label>
+    <button type="submit">Filter</button>
+</form>
+
 <div th:each="user : ${users}">
     <a th:href="@{'/users/' + ${user.id}}" th:text="|${user.id}. ${user.firstName} ${user.lastName}|">User</a>
 </div>
