@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Our Website</title>
+</head>
+<body>
+<h1>Welcome!</h1>
+<p>Thank you for visiting our website. We are happy to have you here!</p>
+
+<div sec:authorize="hasAuthority('ADMIN')">
+    <form th:action="@{/reservations}" method="get" style="display:inline;">
+        <button type="submit">Go to All Reservations</button>
+    </form>
+</div>
+
+<div sec:authorize="hasAuthority('USER')">
+    <form th:action="@{'/users/' + ${user.id}}" method="get" style="display:inline;">
+        <button type="submit">Go to Profile and My Reservations</button>
+    </form>
+</div>
+
+</body>
+</html>
