@@ -6,12 +6,12 @@ DELETE FROM menu_item;
 DELETE FROM restaurant;
 DELETE FROM users;
 
-INSERT INTO users (id, firstname, lastname, email, password, phone_number, role, is_blacklisted, blacklist_reason)
+INSERT INTO users (id, firstname, lastname, email, password, phone_number, role, blacklisted, blacklist_reason)
 VALUES
-    (1, 'John', 'Doe', 'john.doe@example.com', 'password1234', '123-456-7890', 'USER', FALSE, NULL),
-    (2, 'Jane', 'Smith', 'jane.smith@example.com', 'password1235', '123-456-7891', 'ADMIN', FALSE, NULL),
-    (3, 'Alice', 'Johnson', 'alice.johnson@example.com', 'password1236', '123-456-7892', 'USER', TRUE, 'Spamming'),
-    (4, 'Bob', 'Brown', 'bob.brown@example.com', 'password1237', '123-456-7893', 'USER', FALSE, NULL);
+    (1, 'John', 'Doe', 'john.doe@example.com', '$2y$10$NStRcWxh3VyKZvCrRMQHQ.DHN.xKWAdnyN/Z/NGJ34zskiU9AJ3OS', '123-456-7890', 'USER', FALSE, NULL),
+    (2, 'Jane', 'Smith', 'jane.smith@example.com', '$2y$10$R14KCE8nk2ImKmdb2p898OkQKDyv1IxtuPnjhi05erqJOdbYwOANq', '123-456-7891', 'ADMIN', FALSE, NULL),
+    (3, 'Alice', 'Johnson', 'alice.johnson@example.com', '$2y$10$QaVG5r3YegfnwFk/fQhZCOLsJAy0EgA3wgm6xP5HBpGnrHJD1Dn66', '123-456-7892', 'USER', TRUE, 'Spamming'),
+    (4, 'Bob', 'Brown', 'bob.brown@example.com', '$2y$10$XA9SvCfh4W41wuhfwvw9P.W/eQZbvTMQEoZWxQqRhgYRfkvXgKAFO', '123-456-7893', 'USER', FALSE, NULL);
 
 INSERT INTO restaurant (id, name, address, image, phone_number)
 VALUES
