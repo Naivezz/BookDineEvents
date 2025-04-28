@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
 </head>
 <body>
-<h1>User Registration</h1>
+<h1>Registration</h1>
 
 <form th:action="@{/users}" th:object="${user}" method="post">
     <label>First Name:
@@ -33,7 +33,7 @@
     </label>
     <br/>
 
-    <label>Role:
+    <label sec:authorize="hasRole('ROLE_ADMIN')">Role:
         <select th:field="*{role}">
             <option th:each="role : ${roles}" th:value="${role}" th:text="${role}">Role</option>
         </select>
@@ -43,6 +43,9 @@
     <button type="submit">Register</button>
 </form>
 
-<a th:href="@{/users}">Back to users</a>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    <a th:href="@{/users}">Back to users</a>
+</div>
+
 </body>
 </html>
