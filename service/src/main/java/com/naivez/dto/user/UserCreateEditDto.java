@@ -23,15 +23,13 @@ public class UserCreateEditDto {
     @Email(message = "Please provide a valid email address")
     String email;
 
-    @NotBlank(message = "Password is required")
-    @Size(min = 8, max = 100)
     String password;
 
     String phoneNumber;
 
     Role role;
 
-    Boolean isBlacklisted;
+    Boolean blacklisted;
 
     String blacklistReason;
 }
