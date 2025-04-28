@@ -19,7 +19,7 @@ public class UserTestData {
                 .password("efef242r2")
                 .phoneNumber("+425398284")
                 .role(Role.USER)
-                .isBlacklisted(false)
+                .blacklisted(false)
                 .blacklistReason(null)
                 .build();
     }
@@ -33,7 +33,7 @@ public class UserTestData {
                 .password("efef242r2")
                 .phoneNumber("+425398284")
                 .role(Role.USER)
-                .isBlacklisted(false)
+                .blacklisted(false)
                 .blacklistReason(null)
                 .build();
     }
@@ -61,7 +61,7 @@ public class UserTestData {
                 .password("fwegewg43")
                 .phoneNumber("+4385839242")
                 .role(Role.ADMIN)
-                .isBlacklisted(true)
+                .blacklisted(true)
                 .blacklistReason("Bad behavior")
                 .build();
     }
