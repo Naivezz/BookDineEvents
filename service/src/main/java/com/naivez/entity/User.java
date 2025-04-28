@@ -58,7 +58,7 @@ public class User implements BaseEntity<Long> {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    private Boolean isBlacklisted;
+    private Boolean blacklisted;
 
     private String blacklistReason;
 
