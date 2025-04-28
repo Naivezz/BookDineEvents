@@ -7,6 +7,7 @@ import com.naivez.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +31,11 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public String findById(@PathVariable("id") Long id, Model model) {
+    public String findById(@PathVariable("id") Long id, Model model, Authentication authentication) {
+        if (!userService.hasAccessToUser(id, authentication)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+
         return userService.findById(id)
                 .map(user -> {
                     model.addAttribute("user", user);
@@ -41,7 +46,7 @@ public class UserController {
     }
 
     @GetMapping("/registration")
-    public String registration(Model model, @ModelAttribute("user") @Valid UserCreateEditDto user) {
+    public String registration(Model model, @ModelAttribute("user") UserCreateEditDto user) {
         model.addAttribute("user", user);
         model.addAttribute("roles", Role.values());
         return "user/registration";
@@ -53,7 +58,11 @@ public class UserController {
     }
 
     @GetMapping("/{id}/update")
-    public String edit(@PathVariable("id") Long id, Model model) {
+    public String edit(@PathVariable("id") Long id, Model model, Authentication authentication) {
+        if (!userService.hasAccessToUser(id, authentication)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+
         return userService.findById(id)
                 .map(user -> {
                     model.addAttribute("user", user);
@@ -64,14 +73,22 @@ public class UserController {
     }
 
     @PostMapping("/{id}/update")
-    public String update(@PathVariable Long id, @ModelAttribute @Valid UserCreateEditDto user) {
+    public String update(@PathVariable Long id, @ModelAttribute @Valid UserCreateEditDto user, Authentication authentication) {
+        if (!userService.hasAccessToUser(id, authentication)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+
         return userService.update(id, user)
                 .map(it -> "redirect:/users/{id}")
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/{id}/delete")
-    public String delete(@PathVariable("id") Long id) {
+    public String delete(@PathVariable("id") Long id, Authentication authentication) {
+        if (!userService.hasAccessToUser(id, authentication)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+
         if (!userService.delete(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
