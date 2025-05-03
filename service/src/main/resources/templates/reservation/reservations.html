@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservations</title>
+</head>
+<body>
+<h1>Reservations List</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Time</th>
+        <th>Guests</th>
+        <th>Status</th>
+        <th>Amount</th>
+        <th>Payment Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="reservation : ${reservations}">
+        <td th:text="${reservation.id}"></td>
+        <td th:text="${#temporals.format(reservation.time, 'dd.MM.yyyy HH:mm')}"></td>
+        <td th:text="${reservation.guests}"></td>
+        <td th:text="${reservation.status}"></td>
+        <td th:text="${reservation.amount}"></td>
+        <td th:text="${reservation.paymentStatus}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
