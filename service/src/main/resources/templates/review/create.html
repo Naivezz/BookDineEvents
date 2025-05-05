@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Оставить отзыв</title>
+</head>
+<body>
+<h1>Оставить отзыв</h1>
+
+<form th:action="@{/reviews}" th:object="${review}" method="post">
+    <label>Rating (1-5):
+        <input type="number" th:field="*{rating}" min="1" max="5" required/>
+    </label>
+    <br/>
+    <label>Description:
+        <textarea th:field="*{description}" required></textarea>
+    </label>
+    <br/>
+    <button type="submit">Send Review </button>
+</form>
+
+<a th:href="@{/restaurants}" class="btn btn-back">Back to Restaurants</a>
+</body>
+</html>
