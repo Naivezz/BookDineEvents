@@ -7,6 +7,7 @@ import com.naivez.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,11 +32,8 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public String findById(@PathVariable("id") Long id, Model model, Authentication authentication) {
-        if (!userService.hasAccessToUser(id, authentication)) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
-        }
-
+    @PreAuthorize("@userCheckAccess.isSelfOrAdmin(#id, authentication)")
+    public String findById(@PathVariable("id") Long id, Model model) {
         return userService.findById(id)
                 .map(user -> {
                     model.addAttribute("user", user);
@@ -58,11 +56,8 @@ public class UserController {
     }
 
     @GetMapping("/{id}/update")
-    public String edit(@PathVariable("id") Long id, Model model, Authentication authentication) {
-        if (!userService.hasAccessToUser(id, authentication)) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
-        }
-
+    @PreAuthorize("@userCheckAccess.isSelfOrAdmin(#id, authentication)")
+    public String edit(@PathVariable("id") Long id, Model model) {
         return userService.findById(id)
                 .map(user -> {
                     model.addAttribute("user", user);
@@ -73,25 +68,27 @@ public class UserController {
     }
 
     @PostMapping("/{id}/update")
-    public String update(@PathVariable Long id, @ModelAttribute @Valid UserCreateEditDto user, Authentication authentication) {
-        if (!userService.hasAccessToUser(id, authentication)) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
-        }
-
+    @PreAuthorize("@userCheckAccess.isSelfOrAdmin(#id, authentication)")
+    public String update(@PathVariable Long id, @ModelAttribute @Valid UserCreateEditDto user) {
         return userService.update(id, user)
                 .map(it -> "redirect:/users/{id}")
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/{id}/delete")
+    @PreAuthorize("@userCheckAccess.isSelfOrAdmin(#id, authentication)")
     public String delete(@PathVariable("id") Long id, Authentication authentication) {
-        if (!userService.hasAccessToUser(id, authentication)) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
-        }
-
         if (!userService.delete(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        return "redirect:/users";
+
+        boolean isAdmin = authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(Role.ADMIN.getAuthority()));
+
+        if (isAdmin) {
+            return "redirect:/users";
+        } else {
+            return "redirect:/login";
+        }
     }
 }
