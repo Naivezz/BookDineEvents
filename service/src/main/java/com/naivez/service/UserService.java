@@ -9,7 +9,6 @@ import com.naivez.mapper.user.UserReadMapper;
 import com.naivez.repository.UserRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -98,13 +97,4 @@ public class UserService implements UserDetailsService {
                 .authorities(user.getRole().getAuthority())
                 .build();
     }
-
-    public boolean hasAccessToUser(Long userId, Authentication authentication) {
-        String email = authentication.getName();
-        User currentUser = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
-
-        return currentUser.getId().equals(userId) || currentUser.getRole().getAuthority().equals("ADMIN");
-    }
-
 }
