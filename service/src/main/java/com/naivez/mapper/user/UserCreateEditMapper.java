@@ -15,7 +15,7 @@ public interface UserCreateEditMapper {
     void toEntity(UserCreateEditDto dto, @MappingTarget User entity);
 
     default void mapPassword(UserCreateEditDto dto, @MappingTarget User entity, PasswordEncoder passwordEncoder) {
-        if (dto.getPassword() != null && StringUtils.hasText(dto.getPassword())) {
+        if (StringUtils.hasText(dto.getPassword())) {
             String encodedPassword = passwordEncoder.encode(dto.getPassword());
             entity.setPassword(encodedPassword);
         }
