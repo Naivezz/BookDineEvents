@@ -1,9 +1,10 @@
 package com.naivez.http.controller;
 
+import com.naivez.repository.ReservationRepository;
 import com.naivez.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 public class ReservationController {
 
     private final ReservationService reservationService;
+    private final ReservationRepository reservationRepository;
 
     @GetMapping
     public String findAll(Model model) {
@@ -26,11 +28,8 @@ public class ReservationController {
     }
 
     @GetMapping("/{id}")
-    public String findById(@PathVariable("id") Long id, Model model, Authentication authentication) {
-        if (!reservationService.hasAccessToReservation(id, authentication)) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
-        }
-
+    @PreAuthorize("@reservationCheckAccess.hasAccessToReservation(#id, authentication)")
+    public String findById(@PathVariable("id") Long id, Model model) {
         return reservationService.findById(id)
                 .map(reservation -> {
                     model.addAttribute("reservation", reservation);
@@ -44,7 +43,12 @@ public class ReservationController {
         if (reservationService.cancelReservation(id)) {
             return "redirect:/welcome";
         } else {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+            if (!reservationRepository.existsById(id)) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Reservation not found");
+            } else {
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Dont have access to cancel reservation");
+            }
         }
     }
+
 }

@@ -2,27 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title th:text="#{login.title}">Login</title>
 </head>
 <body>
+<div th:insert="~{locale :: locale}"></div>
+
 <form th:action="@{/login}" method="post">
     <div style="color: red" th:if="${param.error}">
-        Invalid email or password.
+        <span th:text="#{login.error}">Invalid email or password.</span>
     </div>
 
-    <label for="email">Email:
-        <input id="email" type="email" name="email" required>
-    </label><br>
+    <label for="email" th:text="#{login.email}">Email:</label>
+    <input id="email" type="email" name="email" required><br>
 
-    <label for="password">Password:
-        <input id="password" type="password" name="password" required>
-    </label><br>
+    <label for="password" th:text="#{login.password}">Password:</label>
+    <input id="password" type="password" name="password" required><br>
 
-    <button type="submit">Login</button>
+    <button type="submit" th:text="#{login.submit}">Login</button>
 </form>
 
 <form action="/users/registration">
-    <button type="submit">Registration</button>
+    <button type="submit" th:text="#{login.register}">Registration</button>
 </form>
 </body>
 </html>

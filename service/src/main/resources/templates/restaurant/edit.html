@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Restaurant</title>
+</head>
+<body>
+<h1>Edit Restaurant</h1>
+
+<form th:action="@{/restaurants/{id}/update(id=${restaurant.id})}"
+      method="post"
+      enctype="multipart/form-data">
+
+    <input type="hidden" name="_method" value="put">
+
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:value="${restaurant.name}" required>
+    </div>
+
+    <div>
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" th:value="${restaurant.address}" required>
+    </div>
+
+    <div>
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" th:value="${restaurant.phoneNumber}" required>
+    </div>
+
+    <div>
+        <label>Current Image:</label>
+        <div th:if="${restaurant.image != null}">
+            <img th:src="@{'/images/' + ${restaurant.image}}" alt="Current image" width="200">
+        </div>
+        <div th:unless="${restaurant.image != null}">
+            No image
+        </div>
+    </div>
+
+    <div>
+        <label for="image">New Image:</label>
+        <input type="file" id="image" name="image" accept="image/*">
+    </div>
+
+    <div>
+        <button type="submit">Update</button>
+        <a th:href="@{/restaurants/{id}(id=${restaurant.id})}">Cancel</a>
+    </div>
+</form>
+</body>
+</html>

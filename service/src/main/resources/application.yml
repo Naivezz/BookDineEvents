@@ -14,3 +14,8 @@ spring:
   liquibase:
     change-log: db.changelog/db.changelog-master.yml
 
+app:
+  image:
+    bucket: C:/Users/ASUS ROG/IdeaProjects/my-first-app/images
+
+
