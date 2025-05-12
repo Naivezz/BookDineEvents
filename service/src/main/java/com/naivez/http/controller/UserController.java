@@ -50,9 +50,11 @@ public class UserController {
         return "user/registration";
     }
 
-    @PostMapping
+    @PostMapping("/registration")
     public String create(@ModelAttribute @Valid UserCreateEditDto user) {
-        return "redirect:/users/" + userService.create(user).getId();
+        System.out.println(user);
+        userService.create(user);
+        return "redirect:/login";
     }
 
     @GetMapping("/{id}/update")
@@ -85,10 +87,6 @@ public class UserController {
         boolean isAdmin = authentication.getAuthorities().stream()
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(Role.ADMIN.getAuthority()));
 
-        if (isAdmin) {
-            return "redirect:/users";
-        } else {
-            return "redirect:/login";
-        }
+        return isAdmin ? "redirect:/users" : "redirect:/login";
     }
 }
