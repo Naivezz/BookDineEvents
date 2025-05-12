@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Events List</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+        .back-to-home {
+            display: inline-block;
+            margin-bottom: 20px;
+            background-color: #6c757d;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .back-to-home:hover {
+            background-color: #5a6268;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .admin-actions {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-create {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-create:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+        }
+        thead {
+            background-color: #0077cc;
+            color: white;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tbody tr:hover {
+            background-color: #e1f0ff;
+        }
+        th {
+            font-weight: bold;
+        }
+        .btn-edit {
+            background-color: #4CAF50;
+            color: white;
+            padding: 6px 12px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .btn-edit:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<a th:href="@{/welcome}" class="back-to-home">← Back to Home</a>
+
+<h1 th:if="${restaurant != null}" th:text="'Events for ' + ${restaurant.name}">Events for Restaurant</h1>
+<h1 th:unless="${restaurant != null}">Events List</h1>
+
+<div th:if="${restaurant != null}" class="admin-actions">
+    <a th:href="@{/events}" class="btn-create">View All Events</a>
+</div>
+<div class="admin-actions" sec:authorize="hasAuthority('ADMIN')">
+    <a th:href="@{/events/create}" class="btn-create">Create New Event</a>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Time</th>
+        <th>Restaurant</th>
+        <th sec:authorize="hasAuthority('ADMIN')">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="event : ${events}">
+        <td th:text="${event.id}">1</td>
+        <td th:text="${event.name}">Event Name</td>
+        <td th:text="${event.description}">Event Description</td>
+        <td th:text="${#temporals.format(event.time, 'yyyy-MM-dd HH:mm')}">Date</td>
+        <td th:text="${event.restaurantName} ?: 'Not specified'">Restaurant Name</td>
+        <td sec:authorize="hasAuthority('ADMIN')">
+            <a th:href="@{/events/{id}/edit(id=${event.id})}" class="btn-edit">Edit</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
