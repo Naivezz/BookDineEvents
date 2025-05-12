@@ -25,6 +25,12 @@
         .btn-back {
             background-color: #2196F3;
         }
+        .btn-reviews {
+            background-color: #008CBA;
+        }
+        .btn-events {
+            background-color: #9C27B0;
+        }
     </style>
 </head>
 <body>
@@ -38,8 +44,16 @@
          style="max-width: 300px; margin: 15px 0;">
 </div>
 
-<div sec:authorize="isAuthenticated()" class="action-buttons">
-    <a th:href="@{/reviews/create}" class="btn btn-edit">Give Review</a>
+<div class="action-buttons">
+    <a th:href="@{/events(restaurantId=${restaurant.id})}"
+       class="btn btn-events">View Events</a>
+
+    <a th:href="@{/reviews(restaurantId=${restaurant.id})}"
+       class="btn btn-reviews">View Reviews</a>
+
+    <a th:href="@{/reviews/create(restaurantId=${restaurant.id})}"
+       class="btn btn-edit"
+       sec:authorize="isAuthenticated()">Give Review</a>
 </div>
 
 <div sec:authorize="hasAuthority('ADMIN')" class="action-buttons">

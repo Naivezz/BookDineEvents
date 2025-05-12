@@ -3,20 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <title>Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            margin-top: 15px;
+        }
+
+        input[type="text"], input[type="checkbox"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .user-list {
+            margin-top: 30px;
+            padding: 0;
+            text-align: center;
+        }
+
+        .user-list a {
+            display: block;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-list a:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
+<h1>Users</h1>
+
 <form action="/users">
     <label for="firstname">Firstname:
-        <input id="firstname" type="text" name="firstName">
+        <input id="firstname" type="text" name="firstName" placeholder="Enter first name">
     </label>
     <label for="lastname">Lastname:
-        <input id="lastname" type="text" name="lastName">
+        <input id="lastname" type="text" name="lastName" placeholder="Enter last name">
     </label>
     <label for="email">Email:
-        <input id="email" type="text" name="email">
+        <input id="email" type="text" name="email" placeholder="Enter email">
     </label>
     <label for="phoneNumber">Phone Number:
-        <input id="phoneNumber" type="text" name="phoneNumber">
+        <input id="phoneNumber" type="text" name="phoneNumber" placeholder="Enter phone number">
     </label>
     <label for="blacklisted">Blacklisted:
         <input id="blacklisted" type="checkbox" name="blacklisted">
@@ -24,8 +103,9 @@
     <button type="submit">Filter</button>
 </form>
 
-<div th:each="user : ${users}">
+<div class="user-list" th:each="user : ${users}">
     <a th:href="@{'/users/' + ${user.id}}" th:text="|${user.id}. ${user.firstName} ${user.lastName}|">User</a>
 </div>
+
 </body>
 </html>

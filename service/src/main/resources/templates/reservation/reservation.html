@@ -1,43 +1,175 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Reservation Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .reservation-details {
+            margin-bottom: 30px;
+        }
+
+        .reservation-details p {
+            margin: 12px 0;
+            font-size: 16px;
+        }
+
+        .reservation-details strong {
+            display: inline-block;
+            width: 150px;
+            color: #555;
+        }
+
+        .action-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        button, .btn {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        button:hover, .btn:hover {
+            background-color: #2980b9;
+        }
+
+        form {
+            display: inline-block;
+            margin: 0;
+        }
+
+        .btn-danger {
+            background-color: #e74c3c;
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+
+        .btn-secondary {
+            background-color: #95a5a6;
+        }
+
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+
+        .status-cancelled {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .status-confirmed {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .status-pending {
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        .success-message {
+            color: #27ae60;
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            border-left: 4px solid #27ae60;
+        }
+
+        .admin-actions {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+    </style>
 </head>
 <body>
-<h1>Reservation Details</h1>
+<div class="container">
+    <h1>Reservation Details</h1>
 
-<div>
-    <p><strong>Reservation ID:</strong> <span th:text="${reservation.id}"></span></p>
-    <p><strong>Reservation Time:</strong> <span th:text="${reservation.time}"></span></p>
-    <p><strong>Number of Guests:</strong> <span th:text="${reservation.guests}"></span></p>
-    <p><strong>Status:</strong> <span th:text="${reservation.status}"></span></p>
-    <p><strong>Amount:</strong> <span th:text="${reservation.amount}"></span></p>
-    <p><strong>Payment Time:</strong> <span th:text="${reservation.paymentTime}"></span></p>
-    <p><strong>Payment Status:</strong> <span th:text="${reservation.paymentStatus}"></span></p>
-    <p><strong>Restaurant ID:</strong> <span th:text="${reservation.restaurantId}"></span></p>
+    <div class="reservation-details">
+        <p><strong>Reservation ID:</strong> <span th:text="${reservation.id}"></span></p>
+        <p><strong>Reservation Time:</strong>
+            <span th:text="${#temporals.format(reservation.time, 'dd.MM.yyyy HH:mm')}"></span>
+        </p>
+        <p><strong>Number of Guests:</strong> <span th:text="${reservation.guests}"></span></p>
+        <p><strong>Status:</strong>
+            <span th:text="${reservation.status}"
+                  th:classappend="'status-' + ${reservation.status.toString().toLowerCase()}"></span>
+        </p>
+        <p><strong>Amount:</strong>
+            <span th:text="${reservation.amount != null} ? ${'$' + reservation.amount.setScale(2)} : 'N/A'"></span>
+        </p>
+        <p><strong>Payment Time:</strong>
+            <span th:text="${reservation.paymentTime != null} ?
+                  ${#temporals.format(reservation.paymentTime, 'dd.MM.yyyy HH:mm')} : 'N/A'"></span>
+        </p>
+        <p><strong>Payment Status:</strong> <span th:text="${reservation.paymentStatus}"></span></p>
+        <p><strong>Restaurant ID:</strong> <span th:text="${reservation.restaurantId}"></span></p>
+    </div>
+
+    <div th:if="${reservation.status == 'CANCELLED'}" class="success-message">
+        <strong>Reservation has been successfully canceled.</strong>
+    </div>
+
+    <div class="action-buttons">
+        <form th:action="@{'/reservations/' + ${reservation.id} + '/cancel'}"
+              method="post"
+              th:unless="${reservation.status == 'CANCELLED'}">
+            <button type="submit" class="btn-danger"
+                    onclick="return confirm('Are you sure you want to cancel this reservation?');">
+                Cancel Reservation
+            </button>
+        </form>
+
+        <a th:href="@{/welcome}" class="btn btn-secondary">
+            Go to Welcome Page
+        </a>
+    </div>
+
+    <div sec:authorize="hasAuthority('ADMIN')" class="admin-actions">
+        <a th:href="@{/reservations}" class="btn">
+            Back to Reservations List
+        </a>
+    </div>
 </div>
-
-<div>
-    <form th:action="@{/templates/reservation/reservations.html/{id}/cancel(id=${reservation.id})}" method="post" onsubmit="return confirm('Are you sure you want to cancel this reservation?');">
-        <button type="submit">Cancel Reservation</button>
-    </form>
-</div>
-
-<div th:if="${reservation.status == 'CANCELLED'}">
-    <p style="color: green;"><strong>Reservation has been successfully canceled.</strong></p>
-</div>
-
-<div>
-    <a th:href="@{/welcome}" style="margin-right: 10px;">
-        <button>Go to Welcome Page</button>
-    </a>
-
-</div>
-
-<div sec:authorize="hasAuthority('ADMIN')">
-    <a th:href="@{/templates/reservation/reservations.html}">Back to Reservations List</a>
-</div>
-
 </body>
 </html>

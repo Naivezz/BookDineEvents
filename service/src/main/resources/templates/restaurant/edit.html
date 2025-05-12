@@ -3,6 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit Restaurant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f4f7f6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+
+        input[type="file"] {
+            padding: 5px;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .image-preview {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-preview img {
+            max-width: 200px;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
 <h1>Edit Restaurant</h1>
@@ -13,37 +85,37 @@
 
     <input type="hidden" name="_method" value="put">
 
-    <div>
+    <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" th:value="${restaurant.name}" required>
     </div>
 
-    <div>
+    <div class="form-group">
         <label for="address">Address:</label>
         <input type="text" id="address" name="address" th:value="${restaurant.address}" required>
     </div>
 
-    <div>
+    <div class="form-group">
         <label for="phoneNumber">Phone Number:</label>
         <input type="text" id="phoneNumber" name="phoneNumber" th:value="${restaurant.phoneNumber}" required>
     </div>
 
-    <div>
+    <div class="form-group">
         <label>Current Image:</label>
-        <div th:if="${restaurant.image != null}">
-            <img th:src="@{'/images/' + ${restaurant.image}}" alt="Current image" width="200">
+        <div th:if="${restaurant.image != null}" class="image-preview">
+            <img th:src="@{'/images/' + ${restaurant.image}}" alt="Current image">
         </div>
         <div th:unless="${restaurant.image != null}">
             No image
         </div>
     </div>
 
-    <div>
+    <div class="form-group">
         <label for="image">New Image:</label>
         <input type="file" id="image" name="image" accept="image/*">
     </div>
 
-    <div>
+    <div class="form-group">
         <button type="submit">Update</button>
         <a th:href="@{/restaurants/{id}(id=${restaurant.id})}">Cancel</a>
     </div>
