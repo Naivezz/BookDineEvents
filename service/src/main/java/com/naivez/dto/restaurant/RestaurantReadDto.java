@@ -1,5 +1,6 @@
 package com.naivez.dto.restaurant;
 
+import com.naivez.dto.event.EventReadDto;
 import com.naivez.dto.review.ReviewReadDto;
 import lombok.Builder;
 import lombok.Value;
@@ -16,4 +17,5 @@ public class RestaurantReadDto {
     String phoneNumber;
     String image;
     List<ReviewReadDto> reviews;
+    List<EventReadDto> events;
 }
