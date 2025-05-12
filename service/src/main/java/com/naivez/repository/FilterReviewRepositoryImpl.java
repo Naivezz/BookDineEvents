@@ -20,6 +20,7 @@ public class FilterReviewRepositoryImpl implements FilterReviewRepository {
     public List<Review> findAllByFilter(ReviewFilter filter) {
         var predicate = QPredicate.builder()
                 .add(filter.getRating(), review.rating::eq)
+                .add(filter.getRestaurantId(), review.restaurant.id::eq)
                 .build();
 
         return new JPAQuery<Review>(entityManager)

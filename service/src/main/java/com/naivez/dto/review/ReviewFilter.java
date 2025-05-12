@@ -8,4 +8,5 @@ import lombok.Data;
 public class ReviewFilter {
 
     Integer rating;
+    Long restaurantId;
 }
