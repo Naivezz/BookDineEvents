@@ -32,6 +32,12 @@ public class ReservationService {
                 .map(reservationReadMapper::toDto);
     }
 
+    public List<ReservationReadDto> findByEmail(String email) {
+        return reservationRepository.findByUserEmail(email).stream()
+                .map(reservationReadMapper::toDto)
+                .toList();
+    }
+
     @Transactional
     public boolean cancelReservation(Long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -48,5 +54,4 @@ public class ReservationService {
                 })
                 .orElse(false);
     }
-
 }

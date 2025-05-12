@@ -8,7 +8,6 @@ import com.naivez.mapper.restaurant.RestaurantCreateEditMapper;
 import com.naivez.mapper.restaurant.RestaurantReadMapper;
 import com.naivez.repository.RestaurantRepository;
 import com.naivez.repository.predicate.QPredicate;
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -17,6 +16,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +26,7 @@ import static com.naivez.entity.QRestaurant.restaurant;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class RestaurantService {
 
     private final RestaurantRepository restaurantRepository;

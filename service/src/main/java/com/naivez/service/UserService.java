@@ -4,6 +4,7 @@ import com.naivez.dto.user.UserCreateEditDto;
 import com.naivez.dto.user.UserFilter;
 import com.naivez.dto.user.UserReadDto;
 import com.naivez.entity.User;
+import com.naivez.entity.enums.Role;
 import com.naivez.mapper.user.UserCreateEditMapper;
 import com.naivez.mapper.user.UserReadMapper;
 import com.naivez.repository.UserRepository;
@@ -50,6 +51,9 @@ public class UserService implements UserDetailsService {
     public UserReadDto create(@Valid UserCreateEditDto userCreateEditDto) {
         return Optional.of(userCreateEditDto)
                 .map(dto -> {
+                    if (dto.getRole() == null) {
+                        dto.setRole(Role.USER);
+                    }
                     User entity = userCreateEditMapper.toEntity(dto);
                     userCreateEditMapper.mapPassword(dto, entity, passwordEncoder);
                     return entity;
@@ -74,7 +78,6 @@ public class UserService implements UserDetailsService {
                 .map(userRepository::save)
                 .map(userReadMapper::toDto);
     }
-
     @Transactional
     public boolean delete(Long id) {
         return userRepository.findById(id)
