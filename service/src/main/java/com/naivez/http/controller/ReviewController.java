@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
@@ -28,40 +29,46 @@ import java.security.Principal;
 public class ReviewController {
 
     private final ReviewService reviewService;
-
-    // TODO: Добавить страницу всех отзывов для конкретного ресторна
     @GetMapping
     public String findAll(Model model, ReviewFilter filter, Pageable pageable) {
         Page<ReviewReadDto> page = reviewService.findAll(filter, pageable);
         model.addAttribute("reviews", PageResponse.of(page));
         model.addAttribute("filter", filter);
+        model.addAttribute("restaurantId", filter.getRestaurantId());
         return "review/reviews";
     }
 
     @GetMapping("/{id}")
-    public String findById(@PathVariable Long id, Model model) {
+    public String findById(@PathVariable Long id, Model model, Principal principal) {
         return reviewService.findAll().stream()
                 .filter(review -> review.getId().equals(id))
                 .findFirst()
                 .map(review -> {
                     model.addAttribute("review", review);
+                    if (principal != null) {
+                        model.addAttribute("currentUsername", principal.getName());
+                    }
                     return "review/review";
                 })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/create")
-    public String createForm(Model model, @ModelAttribute("review") ReviewCreateEditDto review) {
+    public String createForm(@RequestParam Long restaurantId, Model model) {
+        ReviewCreateEditDto review = ReviewCreateEditDto.builder()
+                .restaurantId(restaurantId)
+                .build();
+        model.addAttribute("review", review);
         return "review/create";
     }
 
     @PostMapping
-    public String create(@ModelAttribute @Valid ReviewCreateEditDto review) {
-        ReviewReadDto created = reviewService.create(review);
+    public String create(@ModelAttribute @Valid ReviewCreateEditDto review, Principal principal) {
+        String email = principal.getName();
+        ReviewReadDto created = reviewService.create(review, email);
         return "review/success";
     }
 
-    // TODO: Добавить кнопку удаления для конкретного ресторна
     @PostMapping("/{id}/delete")
     @PreAuthorize("isAuthenticated()")
     public String delete(@PathVariable Long id, Principal principal) {

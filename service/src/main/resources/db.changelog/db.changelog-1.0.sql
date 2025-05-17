@@ -12,6 +12,8 @@ CREATE TABLE users (
     is_blacklisted BOOLEAN DEFAULT FALSE,
     blacklist_reason TEXT
 );
+--rollback DROP TABLE users;
+
 
 --changeset naivez:2
 CREATE TABLE restaurant (
@@ -21,6 +23,8 @@ CREATE TABLE restaurant (
     image VARCHAR(128),
     phone_number VARCHAR(64) NOT NULL
 );
+--rollback DROP TABLE restaurant;
+
 
 --changeset naivez:3
 CREATE TABLE reservation (
@@ -34,6 +38,8 @@ CREATE TABLE reservation (
     payment_time TIMESTAMP,
     payment_status VARCHAR(32)
 );
+--rollback DROP TABLE reservation;
+
 
 --changeset naivez:4
 CREATE TABLE menu_item (
@@ -44,6 +50,8 @@ CREATE TABLE menu_item (
     description TEXT,
     restaurant_id BIGINT NOT NULL REFERENCES restaurant(id) ON DELETE CASCADE
 );
+--rollback DROP TABLE menu_item;
+
 
 --changeset naivez:5
 CREATE TABLE reservation_menu_item (
@@ -52,6 +60,8 @@ CREATE TABLE reservation_menu_item (
     menu_item_id INT NOT NULL REFERENCES menu_item(id),
     quantity INT NOT NULL
 );
+--rollback DROP TABLE reservation_menu_item;
+
 
 --changeset naivez:6
 CREATE TABLE review (
@@ -63,6 +73,7 @@ CREATE TABLE review (
     user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     restaurant_id BIGINT NOT NULL REFERENCES restaurant(id) ON DELETE CASCADE
 );
+--rollback DROP TABLE review;
 
 
 --changeset naivez:7
@@ -73,3 +84,4 @@ CREATE TABLE event (
     time TIMESTAMP NOT NULL,
     restaurant_id BIGINT NOT NULL REFERENCES restaurant(id) ON DELETE CASCADE
 );
+--rollback DROP TABLE event;

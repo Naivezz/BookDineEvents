@@ -83,7 +83,6 @@ public class DataBuilder {
         return Event.builder()
                 .name("Some event")
                 .description("Some description")
-                .time(Instant.now().plus(1, ChronoUnit.DAYS))
                 .restaurant(createRestaurant())
                 .build();
     }

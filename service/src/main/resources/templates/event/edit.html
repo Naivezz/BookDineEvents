@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Event</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="datetime-local"],
+        select,
+        textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        button[type="submit"] {
+            background-color: #5cb85c;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+        @media (max-width: 600px) {
+            form { padding: 15px; }
+            input, select, textarea, button { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+<h1>Edit Event</h1>
+
+<form th:action="@{/events/{id}/update(id=${event.id})}" method="post">
+    <label for="name">Event Name</label>
+    <input type="text" id="name" name="name" th:value="${event.name}" required>
+
+    <label for="description">Description</label>
+    <textarea id="description" name="description" required th:text="${event.description}"></textarea>
+
+    <label for="time">Time</label>
+    <input type="datetime-local" id="time" name="time"
+           th:value="${#temporals.format(event.time, 'yyyy-MM-dd''T''HH:mm')}" required>
+
+    <label for="restaurant">Restaurant</label>
+    <select id="restaurant" name="restaurantId" required>
+        <option th:each="restaurant : ${restaurants}"
+                th:value="${restaurant.id}"
+                th:text="${restaurant.name}"
+                th:selected="${restaurant.id == event.restaurantId}">
+        </option>
+    </select>
+
+    <button type="submit">Save Changes</button>
+</form>
+
+</body>
+</html>

@@ -35,7 +35,6 @@ public class RestaurantController {
         return "restaurant/restaurants";
     }
 
-
     @GetMapping("/{id}")
     public String findById(@PathVariable Long id, Model model) {
         return restaurantService.findById(id)

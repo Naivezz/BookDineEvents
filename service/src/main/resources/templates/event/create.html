@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Event</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        textarea {
+            height: 100px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>Create New Event</h1>
+
+<form th:action="@{/events}" method="post">
+    <div class="form-group">
+        <label>Event Name</label>
+        <input type="text" name="name" required>
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <textarea name="description"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Event Time</label>
+        <input type="datetime-local"
+               name="time"
+               required
+               th:value="${event?.time != null ? #temporals.format(event.time, 'yyyy-MM-dd''T''HH:mm') : ''}">
+    </div>
+
+    <div class="form-group">
+        <label>Restaurant</label>
+        <select name="restaurantId" required>
+            <option value="">-- Select --</option>
+            <option th:each="r : ${restaurants}"
+                    th:value="${r.id}"
+                    th:text="${r.name}"></option>
+        </select>
+    </div>
+
+    <button type="submit">Create Event</button>
+</form>
+</body>
+</html>

@@ -28,7 +28,7 @@ public class LoginController {
         model.addAttribute("restaurants", restaurantService.findAll());
 
         if (principal != null) {
-            User user = userRepository.findByEmail(principal.getName())
+            User user = userRepository.findByEmailWithReservations(principal.getName())
                     .orElseThrow(() -> new UsernameNotFoundException("User not found"));
             model.addAttribute("user", user);
         }

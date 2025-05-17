@@ -3,26 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{login.title}">Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .error {
+            color: #ff0000;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #000;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .register-btn {
+            background: #fff;
+            color: #000;
+            border: 1px solid #000;
+        }
+    </style>
 </head>
 <body>
 <div th:insert="~{locale :: locale}"></div>
 
-<form th:action="@{/login}" method="post">
-    <div style="color: red" th:if="${param.error}">
-        <span th:text="#{login.error}">Invalid email or password.</span>
-    </div>
+<div class="error" th:if="${param.error}">
+    <span th:text="#{login.error}">Invalid email or password.</span>
+</div>
 
+<form th:action="@{/login}" method="post">
     <label for="email" th:text="#{login.email}">Email:</label>
-    <input id="email" type="email" name="email" required><br>
+    <input id="email" type="email" name="email" required>
 
     <label for="password" th:text="#{login.password}">Password:</label>
-    <input id="password" type="password" name="password" required><br>
+    <input id="password" type="password" name="password" required>
 
     <button type="submit" th:text="#{login.submit}">Login</button>
 </form>
 
 <form action="/users/registration">
-    <button type="submit" th:text="#{login.register}">Registration</button>
+    <button type="submit" class="register-btn" th:text="#{login.register}">Registration</button>
 </form>
 </body>
 </html>

@@ -13,4 +13,5 @@ public class ReviewReadDto {
     String description;
     String image;
     Instant time;
+    String authorUsername;
 }
